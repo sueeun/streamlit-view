@@ -13,4 +13,4 @@ iterative-telemetry==0.0.5
 watchdog==3.0.0
 pyarrow<11.0dev
 pyspark==3.0.0
-matplotlib==3.7.1
+matplotlib
