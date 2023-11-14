@@ -16,7 +16,7 @@ def main():
     # CSV 파일 읽기
     
     # df_entity = pd.read_csv(uploaded_csvfile)
-    df_entity = pd.read_csv('test.csv')
+    df_entity = pd.read_csv('pj_processed.csv')
 
     # 모델 로드
     kmeans = load('kmeans.pkl')
