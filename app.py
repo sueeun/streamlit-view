@@ -26,7 +26,7 @@ def main():
 
 
     # Predict를 통해 클러스터 할당
-    df_entity['cluster_kmeans'] = modell.predict(df_entity[cols_to_train])
+    df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
     
     
     # PCA를 사용하여 데이터의 차원을 2로 축소
