@@ -14,3 +14,4 @@ watchdog==3.0.0
 pyarrow<11.0dev
 pyspark==3.0.0
 matplotlib
+joblib
