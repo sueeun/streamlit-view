@@ -19,10 +19,14 @@ def main():
     kmeans = load('kmeans.pkl')
     dbscan = load('dbscan.pkl')
 
+    
     # 선택할 feature들
     cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
                      'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
 
+
+    # Predict를 통해 클러스터 할당
+    df_entity['cluster_kmeans'] = modell.predict(df_entity[cols_to_train])
     
     
     # PCA를 사용하여 데이터의 차원을 2로 축소
