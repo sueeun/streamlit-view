@@ -16,30 +16,30 @@ def main():
     # CSV 파일 읽기
     
     # df_entity = pd.read_csv(uploaded_csvfile)
-    df_entity = pd.read_csv('pj_processed.csv')
+    df_entity = pd.read_csv('pj_processedAll.csv')
     # df_entity = pd.read_csv('train_processed.csv')
 
     # 모델 로드
-    kmeans = load('kmeans.pkl')
-    dbscan = load('dbscan.pkl')
+    # kmeans = load('kmeans.pkl')
+    # dbscan = load('dbscan.pkl')
     
         
     # 선택할 feature들
-    cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
-                    'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
+    # cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
+    #                 'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
     
     
-    # Predict를 통해 클러스터 할당
-    df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
+    # # Predict를 통해 클러스터 할당
+    # df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
         
         
-    # PCA를 사용하여 데이터의 차원을 2로 축소
-    pca = PCA(n_components=2)
-    pca_result = pca.fit_transform(df_entity[cols_to_train])
+    # # PCA를 사용하여 데이터의 차원을 2로 축소
+    # pca = PCA(n_components=2)
+    # pca_result = pca.fit_transform(df_entity[cols_to_train])
     
-    # PCA 결과를 데이터프레임에 추가
-    df_entity['pca_1'] = pca_result[:, 0]
-    df_entity['pca_2'] = pca_result[:, 1]
+    # # PCA 결과를 데이터프레임에 추가
+    # df_entity['pca_1'] = pca_result[:, 0]
+    # df_entity['pca_2'] = pca_result[:, 1]
     
     # Streamlit 앱 레이아웃
     st.title("전체 Feature를 이용한 이상탐지된 Entity 시각화 (PCA 결과)")
