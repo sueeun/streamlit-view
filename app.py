@@ -18,9 +18,9 @@ def main():
     # df_entity = pd.read_csv(uploaded_csvfile)
     df_entity = pd.read_csv('test.csv')
 
-        # 모델 로드
-        kmeans = load('kmeans.pkl')
-        dbscan = load('dbscan.pkl')
+    # 모델 로드
+    kmeans = load('kmeans.pkl')
+    dbscan = load('dbscan.pkl')
     
         
     # 선택할 feature들
@@ -28,7 +28,7 @@ def main():
                     'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
     
     
-        # Predict를 통해 클러스터 할당
+    # Predict를 통해 클러스터 할당
     df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
         
         
