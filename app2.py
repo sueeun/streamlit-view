@@ -1,61 +1,48 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import matplotlib.pyplot as plt
-from sklearn.decomposition import PCA
-from joblib import dump, load
+
+def process_log_data(log_df):
+    log_df.drop(columns='timestamp', inplace=True)
+    log_df['Timestamp'] = log_df['message'].str.extract(r'(\d+/\w+/\d+\d+:\d+:\d+:\d+)')
+    log_df['Timestamp'] = pd.to_datetime(log_df['Timestamp'], format='%d/%b/%Y:%H:%M:%S').dt.strftime('%Y-%m-%d %H:%M:%S')
+    log_df['Host'] = log_df['message'].str.extract(r'(\d+.\d+.\d+.\d+)')
+    log_df[['Method', 'Path']] = log_df['message'].str.extract(r'(HEAD|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|POST|GET)\s+(.?)\s+HTTP')
+    log_df['Protocol'] = log_df['message'].str.extract(r'(HTTP/\d+.\d+)')
+    log_df['Status'] = log_df['message'].str.extract(r'(\d+)\s+\d+')
+    log_df['Bytes'] = log_df['message'].str.extract(r'\d+\s+(\d+)')
+    log_df['UA'] = log_df['message'].str.extract(r'(Mozilla.+537.36)')
+    selected_log_df = log_df[log_df['Method'].isna() & log_df['Protocol'].isna()]
+    log_df['Payload'] = selected_log_df['message'].str.extract(r']{1}\s+"(.)" \d+')
+    log_df['Referer'] = log_df['message'].str.extract(r'."(http[s]?://.?)"')
+    log_df.drop(columns='message', inplace=True)
+    log_df = log_df[['Timestamp','Method','Protocol','Status','Referer','Path','Host','UA','Payload','Bytes']]
+    return log_df
 
 def main():
-    # st.title('로그 데이터 처리 앱')
+    st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    # uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
 
-    # if uploaded_csvfile is not None:
-        
-    # CSV 파일 읽기
-    
-    # df_entity = pd.read_csv(uploaded_csvfile)
-    df_entity = pd.read_csv('pj_processed.csv')
-    # df_entity = pd.read_csv('train_processed.csv')
+    if uploaded_file is not None:
+        # CSV 파일 읽기
+        log_df = pd.read_csv(uploaded_file)
 
-    # 모델 로드
-    kmeans = load('kmeans.pkl')
-    dbscan = load('dbscan.pkl')
-    
-        
-    # 선택할 feature들
-    cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
-                    'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
-    
-    
-    # Predict를 통해 클러스터 할당
-    df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
-        
-        
-    # PCA를 사용하여 데이터의 차원을 2로 축소
-    pca = PCA(n_components=2)
-    pca_result = pca.fit_transform(df_entity[cols_to_train])
-    
-    # PCA 결과를 데이터프레임에 추가
-    df_entity['pca_1'] = pca_result[:, 0]
-    df_entity['pca_2'] = pca_result[:, 1]
-    
-    # Streamlit 앱 레이아웃
-    st.title("전체 Feature를 이용한 이상탐지된 Entity 시각화 (PCA 결과)")
-    
-    # 그래프 그리기
-    fig, ax = plt.subplots(figsize=(10, 6))
-    scatter = ax.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
-    ax.set_xlabel("PCA 1")
-    ax.set_ylabel("PCA 2")
-    ax.set_title("전체 Feature를 이용한 이상탐지된 Entity 시각화 (PCA 결과)")
-    ax.legend(*scatter.legend_elements(), title='클러스터')
-    
-    # Streamlit에 Matplotlib 그래프 표시
-    st.pyplot(fig)
-   
-        
+        # 로그 데이터 처리
+        processed_log_df = process_log_data(log_df)
+
+        # 처리된 데이터 표시
+        st.write("처리된 로그 데이터:")
+        st.write(processed_log_df)
+
+        # 처리된 데이터를 새로운 CSV 파일로 저장
+        processed_file_path = 'processed_file.csv'
+        processed_log_df.to_csv(processed_file_path, index=False)
+
+        # 처리된 파일을 다운로드할 수 있는 링크 제공
+        st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
+
 
 if __name__ == '__main__':
     main()
