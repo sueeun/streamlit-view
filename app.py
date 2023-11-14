@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import matplotlib
+import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
 
