@@ -7,14 +7,14 @@ from sklearn.decomposition import PCA
 
 
 def main():
-    st.title('로그 데이터 처리 앱')
+    # st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    # uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
-        df_entity = pd.read_csv(uploaded_csvfile)
+        df_entity = pd.read_csv('train_processed.csv')
         
 
         # 선택할 feature들
