@@ -22,6 +22,8 @@ def main():
     # 선택할 feature들
     cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
                      'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
+
+    
     
     # PCA를 사용하여 데이터의 차원을 2로 축소
     pca = PCA(n_components=2)
