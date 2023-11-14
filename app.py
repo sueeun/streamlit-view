@@ -27,7 +27,7 @@ def main():
 
     if uploaded_file is not None:
         # CSV 파일 읽기
-        log_df = pd.read_csv(uploaded_file)
+        log_df = pd.read_csv(ctlog1.csv)
 
         # 로그 데이터 처리
         processed_log_df = process_log_data(log_df)
