@@ -9,26 +9,27 @@ def main():
     # st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    # uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
-    if uploaded_csvfile is not None:
+    # if uploaded_csvfile is not None:
         
     # CSV 파일 읽기
-        df_entity = pd.read_csv(uploaded_csvfile)
-    # df_entity = pd.read_csv('train_processed.csv')
+    
+        # df_entity = pd.read_csv(uploaded_csvfile)
+    df_entity = pd.read_csv('train_processed.csv')
 
         # 모델 로드
-        kmeans = load('kmeans.pkl')
-        dbscan = load('dbscan.pkl')
+        # kmeans = load('kmeans.pkl')
+        # dbscan = load('dbscan.pkl')
     
         
         # 선택할 feature들
-        cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
-                         'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
+        # cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
+        #                 'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
     
     
         # Predict를 통해 클러스터 할당
-        df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
+        # df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
         
         
         # PCA를 사용하여 데이터의 차원을 2로 축소
