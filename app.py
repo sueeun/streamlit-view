@@ -3,8 +3,7 @@ import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-
-
+from joblib import dump, load
 
 def main():
     # st.title('로그 데이터 처리 앱')
@@ -15,7 +14,10 @@ def main():
     # if uploaded_csvfile is not None:
     # CSV 파일 읽기
     df_entity = pd.read_csv('train_processed.csv')
-    
+
+    # 모델 로드
+    kmeans = load('kmeans.pkl')
+    dbscan = load('dbscan.pkl')
 
     # 선택할 feature들
     cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
