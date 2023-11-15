@@ -45,10 +45,12 @@ def main():
    df_entity['pca_2'] = pca_result[:, 1]
 
    # 한글 폰트 경로 설정
-   font_file = "NanumGothic.ttf"
-   st.write(font_file)
-   # fm.fontManager.addfont(font_file)
-   # fm._load_fontmanager(try_read_cache=False)
+   uploaded_fontfile = st.file_uploader("파일 선택", type=["ttf"])
+
+   font_file = uploaded_fontfile
+   # st.write(font_file)
+   fm.fontManager.addfont(font_file)
+   fm._load_fontmanager(try_read_cache=False)
 
    # Matplotlib 폰트 설정
    rc('font', family=font_name)
