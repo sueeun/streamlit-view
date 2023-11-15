@@ -17,9 +17,7 @@ from feature_extraction import feature_extract
 from feature_extraction import feature_extract2
 
 
-plt.rcParams['axes.unicode_minus'] = False
-if platform.system() == 'Linux':
-    rc('font', family='NanumGothic')
+rc('font', family='NanumGothic')
 
 def main():
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
