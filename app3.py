@@ -11,7 +11,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
-
+from feature_extraction import feature_extract2
 
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
@@ -71,7 +71,7 @@ elif page == "Contact":
         df_entity = pd.read_csv(uploaded_csvfile)
 
         # Feature Extraction
-        df_entity_processed = feature_extract(df_entity)
+        df_entity_processed = feature_extract2(df_entity)
 
         # host 컬럼을 entity로 변경
         df_entity_processed = df_entity_processed.rename(columns={'Host': 'entity'})
