@@ -5,7 +5,7 @@ import joblib
 from datetime import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
-from matplotlib import font_manager, rc
+import matplotlib.font_manager as fm  
 from sklearn import preprocessing
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.decomposition import PCA
@@ -45,8 +45,9 @@ def main():
    df_entity['pca_2'] = pca_result[:, 1]
 
    # 한글 폰트 경로 설정
-   font_path = "NanumGothic.ttf"
-   font_name = font_manager.FontProperties(fname=font_path).get_name()
+   font_file = "NanumGothic.ttf"
+   fm.fontManager.addfont(font_file)
+   fm._load_fontmanager(try_read_cache=False)
 
    # Matplotlib 폰트 설정
    rc('font', family=font_name)
