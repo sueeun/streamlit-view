@@ -32,7 +32,7 @@ def main():
    df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
    # st.write(df_entity)
    st.write(df_entity['cluster_kmeans'].value_counts())
-   view
+   
 
 if __name__ == '__main__':
     main()
