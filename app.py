@@ -1,56 +1,33 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
+import joblib
 from datetime import datetime
+import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans, DBSCAN
 from sklearn.decomposition import PCA
-from joblib import dump, load
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.manifold import TSNE
+from process_log import process_log_data 
+from feature_extraction import feature_extract
+from feature_extraction import feature_extract2
 
-def main():
-    # st.title('로그 데이터 처리 앱')
 
-    # 파일 업로드
-    # uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+# 각 페이지에 대한 내용 표시
+# 사이드바에 링크 추가
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Home", "About", "Contact"])
 
-    # if uploaded_csvfile is not None:
-        
-    # CSV 파일 읽기
-    
-    # df_entity = pd.read_csv(uploaded_csvfile)
-    df_entity = pd.read_csv('pj_processedAll.csv')
+# 각 페이지에 대한 내용 표시
+if page == "Home":
+    st.title("Home Page")
+    st.write("Welcome to the Home Page.")
+elif page == "About":
+    st.title("About Page")
+    st.write("This is the About Page.")
+elif page == "Contact":
+    st.title("Contact Page")
+    st.write("You can contact us here.")
 
-      
-    # 선택할 feature들
-    # cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
-    #                 'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
-    
-    
-    # # Predict를 통해 클러스터 할당
-    # df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
-        
-        
-    # # PCA를 사용하여 데이터의 차원을 2로 축소
-    # pca = PCA(n_components=2)
-    # pca_result = pca.fit_transform(df_entity[cols_to_train])
-    
-    # # PCA 결과를 데이터프레임에 추가
-    # df_entity['pca_1'] = pca_result[:, 0]
-    # df_entity['pca_2'] = pca_result[:, 1]
-    
-    # Streamlit 앱 레이아웃
-    st.title("전체 Feature를 이용한 이상탐지된 Entity 시각화 (PCA 결과)")
-    
-    # 그래프 그리기
-    fig, ax = plt.subplots(figsize=(10, 6))
-    scatter = ax.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
-    ax.set_xlabel("PCA 1")
-    ax.set_ylabel("PCA 2")
-    ax.set_title("전체 Feature를 이용한 이상탐지된 Entity 시각화 (PCA 결과)")
-    ax.legend(*scatter.legend_elements(), title='클러스터')
-    
-    # Streamlit에 Matplotlib 그래프 표시
-    st.pyplot(fig)
    
-        
-
-if __name__ == '__main__':
-    main()
