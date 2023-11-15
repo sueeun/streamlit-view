@@ -5,6 +5,7 @@ import joblib
 from datetime import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
+import platform
 from matplotlib import font_manager, rc
 from sklearn import preprocessing
 from sklearn.cluster import KMeans, DBSCAN
@@ -16,6 +17,9 @@ from feature_extraction import feature_extract
 from feature_extraction import feature_extract2
 
 
+plt.rcParams['axes.unicode_minus'] = False
+if platform.system() == 'Linux':
+    rc('font', family='NanumGothic')
 
 def main():
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
@@ -43,16 +47,6 @@ def main():
    # PCA 결과를 데이터프레임에 추가
    df_entity['pca_1'] = pca_result[:, 0]
    df_entity['pca_2'] = pca_result[:, 1]
-
-   # 한글 폰트 파일 경로 설정
-   font_file = "NanumGothic.ttf"
-   
-   # 경로를 통해 한글 폰트 추가
-   fm = font_manager.fontManager
-   fm.addfont(font_file)
-
-   # Matplotlib에서 한글 폰트 설정
-   rc('font', family='NanumGothic')
 
    
    # 2D PCA 결과를 시각화
