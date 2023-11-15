@@ -49,8 +49,8 @@ def main():
 
    font_file = uploaded_fontfile
    # st.write(font_file)
-   # fm.fontManager.addfont(font_file)
-   # fm._load_fontmanager(try_read_cache=False)
+   fm.fontManager.addfont(font_file)
+   fm._load_fontmanager(try_read_cache=False)
 
    
    # 2D PCA 결과를 시각화
