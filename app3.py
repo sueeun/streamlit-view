@@ -12,7 +12,6 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
-from feature_extraction import feature_extract2
 
 
 
