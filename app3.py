@@ -5,6 +5,7 @@ import joblib
 from datetime import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
 from sklearn import preprocessing
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.decomposition import PCA
@@ -42,6 +43,13 @@ def main():
    # PCA 결과를 데이터프레임에 추가
    df_entity['pca_1'] = pca_result[:, 0]
    df_entity['pca_2'] = pca_result[:, 1]
+
+   # 한글 폰트 경로 설정
+   font_path = "NanumGothic.ttf"
+   font_name = font_manager.FontProperties(fname=font_path).get_name()
+
+   # Matplotlib 폰트 설정
+   rc('font', family=font_name)
    
    # 2D PCA 결과를 시각화
    fig = plt.figure(figsize=(10, 6))
