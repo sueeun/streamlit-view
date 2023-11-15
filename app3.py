@@ -12,6 +12,8 @@ from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
 
+uploaded_file = None
+
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
 page = st.sidebar.radio("Go to", ["Home", "About", "Contact"])
@@ -21,7 +23,7 @@ if page == "Home":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
+    global uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_file is not None:
         # CSV 파일 읽기
@@ -41,10 +43,11 @@ if page == "Home":
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "About":
+    uploaded_file.close()
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    global uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
@@ -57,10 +60,12 @@ elif page == "About":
         st.write("전처리된 데이터:")
         st.write(df_entity_processed)
 elif page == "Contact":
+    uploaded_file.close()
+    
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    global uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
