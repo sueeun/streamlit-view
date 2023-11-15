@@ -15,4 +15,12 @@ from feature_extraction import feature_extract2
 
 
 
-   
+def main():
+   df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
+   st.write(df_entity)
+
+
+
+
+if __name__ == '__main__':
+    main()
