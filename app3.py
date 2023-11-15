@@ -13,9 +13,6 @@ from process_log import process_log_data
 from feature_extraction import feature_extract
 from feature_extraction import feature_extract2
 
-# 사이드바에 링크 추가
-st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "About", "Contact"])
 
 # 각 페이지에 대한 내용 표시
 # 사이드바에 링크 추가
