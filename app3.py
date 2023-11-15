@@ -32,6 +32,5 @@ elif page == "About":
 elif page == "Contact":
     st.title("Contact Page")
     st.write("You can contact us here.")
-elif page == "Contact":
-    
+
    
