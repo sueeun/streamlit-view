@@ -29,7 +29,7 @@ def main():
    # 정상/ 비정상 클러스터로 나누어 보기
    kmeans.fit(df_entity[cols_to_train])
 
-   df_entity['cluster_kmeans'] = modell.predict(df_entity[cols_to_train])
+   df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
 
    # st.write(df_entity['cluster_kmeans'].value_counts())
 
