@@ -46,8 +46,9 @@ def main():
 
    # 한글 폰트 경로 설정
    font_file = "NanumGothic.ttf"
-   fm.fontManager.addfont(font_file)
-   fm._load_fontmanager(try_read_cache=False)
+   st.write(font_file)
+   # fm.fontManager.addfont(font_file)
+   # fm._load_fontmanager(try_read_cache=False)
 
    # Matplotlib 폰트 설정
    rc('font', family=font_name)
