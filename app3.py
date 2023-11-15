@@ -44,7 +44,6 @@ if page == "Home":
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "About":
     
-    uploaded_file.close()
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
@@ -62,7 +61,6 @@ elif page == "About":
         st.write("전처리된 데이터:")
         st.write(df_entity_processed)
 elif page == "Contact":
-    uploaded_file.close()
     
     st.title('로그 데이터 처리 앱')
 
