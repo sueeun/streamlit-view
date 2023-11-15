@@ -12,7 +12,6 @@ from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
 
-uploaded_file = None
 
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
@@ -48,7 +47,7 @@ elif page == "About":
 
     # 파일 업로드
     
-    uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
@@ -65,7 +64,7 @@ elif page == "Contact":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
