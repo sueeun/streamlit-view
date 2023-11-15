@@ -52,8 +52,6 @@ def main():
    # fm.fontManager.addfont(font_file)
    # fm._load_fontmanager(try_read_cache=False)
 
-   # Matplotlib 폰트 설정
-   rc('font', family=font_name)
    
    # 2D PCA 결과를 시각화
    fig = plt.figure(figsize=(10, 6))
