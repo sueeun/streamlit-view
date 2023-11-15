@@ -17,13 +17,8 @@ def main():
     
     # df_entity = pd.read_csv(uploaded_csvfile)
     df_entity = pd.read_csv('pj_processedAll.csv')
-    # df_entity = pd.read_csv('train_processed.csv')
 
-    # 모델 로드
-    # kmeans = load('kmeans.pkl')
-    # dbscan = load('dbscan.pkl')
-    
-        
+      
     # 선택할 feature들
     # cols_to_train = ['method_cnt', 'method_post', 'protocol_1_0', 'status_major', 'status_404', 'status_499', 'status_cnt',
     #                 'path_same', 'path_xmlrpc', 'ua_cnt', 'has_payload', 'bytes_avg', 'bytes_std']
