@@ -23,7 +23,6 @@ if page == "Home":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    global uploaded_file
     uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
 
     if uploaded_file is not None:
@@ -44,7 +43,6 @@ if page == "Home":
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "About":
-    global uploaded_file
     
     uploaded_file.close()
     st.title('로그 데이터 처리 앱')
@@ -64,7 +62,6 @@ elif page == "About":
         st.write("전처리된 데이터:")
         st.write(df_entity_processed)
 elif page == "Contact":
-    global uploaded_file
     uploaded_file.close()
     
     st.title('로그 데이터 처리 앱')
