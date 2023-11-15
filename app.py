@@ -76,7 +76,7 @@ elif page == "About":
         st.button("Download CSV 파일 (중복 제거)", on_click=lambda: st.markdown(f'<a href="data:file/csv;base64,{b64_no_duplicates}" download="preprocessed_data_no_duplicates.csv">Download CSV 파일 (중복 제거)</a>', unsafe_allow_html=True))
 
 elif page == "Contact":
-   st.title('Entity 클러스터링 및 PCA 시각화')
+    st.title('Entity 클러스터링 및 PCA 시각화')
 
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
