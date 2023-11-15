@@ -44,8 +44,39 @@ if page == "Home":
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "About":
-    st.title("About Page")
-    st.write("This is the About Page.")
+    # 파일 업로드
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+
+    if uploaded_csvfile is not None:
+        # CSV 파일 읽기
+        df_entity = pd.read_csv(uploaded_csvfile)
+
+        # Feature Extraction
+        df_entity_processed = feature_extract(df_entity)
+
+        # host 컬럼을 entity로 변경
+        df_entity_processed = df_entity_processed.rename(columns={'Host': 'entity'})
+
+        # 불필요한 컬럼 제거
+        columns_to_drop = ['Unnamed: 0', 'Timestamp', 'Method', 'Protocol', 'Status', 'Referer', 'Path', 'UA', 'Payload', 'Bytes']
+        df_entity_processed = df_entity_processed.drop(columns=columns_to_drop, errors='ignore')
+
+        # 'entity' 컬럼을 맨 앞으로 이동
+        columns_order = ['entity'] + [col for col in df_entity_processed.columns if col != 'entity']
+        df_entity_processed = df_entity_processed[columns_order]
+
+        # 중복된 행 제거
+        df_entity_processed_no_duplicates = df_entity_processed.drop_duplicates()
+
+        # 전처리된 데이터 출력 (중복 제거)
+        st.write("전처리된 데이터 (중복 제거):")
+        st.write(df_entity_processed_no_duplicates)
+
+        # CSV 파일 다운로드 버튼 생성 (중복 제거된 데이터)
+        csv_file_no_duplicates = df_entity_processed_no_duplicates.to_csv(index=False).encode()
+        b64_no_duplicates = base64.b64encode(csv_file_no_duplicates).decode()
+        st.button("Download CSV 파일 (중복 제거)", on_click=lambda: st.markdown(f'<a href="data:file/csv;base64,{b64_no_duplicates}" download="preprocessed_data_no_duplicates.csv">Download CSV 파일 (중복 제거)</a>', unsafe_allow_html=True))
+
 elif page == "Contact":
     st.title("Contact Page")
     st.write("You can contact us here.")
