@@ -1,122 +1,16 @@
 import streamlit as st
 import pandas as pd
-from datetime import datetime
 import numpy as np
-from sklearn.decomposition import PCA
 import joblib
+from datetime import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans, DBSCAN
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.manifold import TSNE
+from process_log import process_log_data 
 from feature_extraction import feature_extract
-
-def process_log_data(log_df):
-    log_df.drop(columns='timestamp', inplace=True)
-    log_df['Timestamp'] = log_df['message'].str.extract(r'(\d+/\w+/\d+\d+:\d+:\d+:\d+)')
-    log_df['Timestamp'] = pd.to_datetime(log_df['Timestamp'], format='%d/%b/%Y:%H:%M:%S').dt.strftime('%Y-%m-%d %H:%M:%S')
-    log_df['Host'] = log_df['message'].str.extract(r'(\d+.\d+.\d+.\d+)')
-    log_df[['Method', 'Path']] = log_df['message'].str.extract(r'(HEAD|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|POST|GET)\s+(.?)\s+HTTP')
-    log_df['Protocol'] = log_df['message'].str.extract(r'(HTTP/\d+.\d+)')
-    log_df['Status'] = log_df['message'].str.extract(r'(\d+)\s+\d+')
-    log_df['Bytes'] = log_df['message'].str.extract(r'\d+\s+(\d+)')
-    log_df['UA'] = log_df['message'].str.extract(r'(Mozilla.+537.36)')
-    selected_log_df = log_df[log_df['Method'].isna() & log_df['Protocol'].isna()]
-    log_df['Payload'] = selected_log_df['message'].str.extract(r']{1}\s+"(.)" \d+')
-    log_df['Referer'] = log_df['message'].str.extract(r'."(http[s]?://.?)"')
-    log_df.drop(columns='message', inplace=True)
-    log_df = log_df[['Timestamp','Method','Protocol','Status','Referer','Path','Host','UA','Payload','Bytes']]
-    return log_df
-
-def feature_extract(df):
-    # 사용할 feature 목록
-    cols_to_train = ['Method', 'Protocol', 'Status', 'Referer', 'Path', 'UA', 'Payload', 'Bytes']
-
-    # 사용자 정의 함수: Method 관련 Feature
-    def extract_method_features(group):
-        method_cnt = group['Method'].nunique()
-        method_post_percent = len(group[group['Method'] == 'POST']) / max(1, len(group))
-        return method_cnt, method_post_percent
-
-    # 사용자 정의 함수: Protocol 관련 Feature
-    def extract_protocol_features(group):
-        use_1_0 = any(group['Protocol'] == 'HTTP/1.0')
-        return use_1_0
-
-    # 사용자 정의 함수: Status 관련 Feature
-    def extract_status_features(group):
-        status_major_percent = len(group[group['Status'].isin(['200', '301', '302'])]) / max(1, len(group))
-        status_404_percent = len(group[group['Status'] == '404']) / max(1, len(group))
-        has_499 = any(group['Status'] == '499')
-        status_cnt = group['Status'].nunique()
-        return status_major_percent, status_404_percent, has_499, status_cnt
-
-    # 사용자 정의 함수: Path 관련 Feature
-    def extract_path_features(group):
-        top1_path_cnt = group['Path'].value_counts().iloc[0] if not group['Path'].value_counts().empty else 0
-        path_same = top1_path_cnt / max(1, len(group))
-        path_xmlrpc = len(group[group['Path'].str.contains('xmlrpc.php') == True]) / max(1, len(group))
-        return path_same, path_xmlrpc
-
-    # 사용자 정의 함수: User Agent 관련 Feature
-    def extract_ua_features(group):
-        ua_cnt = group['UA'].nunique()
-        return ua_cnt
-
-    # 사용자 정의 함수: Payload 관련 Feature
-    def extract_payload_features(group):
-        has_payload = any(group['Payload'] != '-')
-        return has_payload
-
-    # 사용자 정의 함수: Bytes 관련 Feature
-    def extract_bytes_features(group):
-        bytes_avg = np.mean(group['Bytes'])
-        bytes_std = np.std(group['Bytes'])
-        return bytes_avg, bytes_std
-
-    # Feature Engineering
-    for entity in df['Host'].unique():
-        group = df[df['Host'] == entity]
-
-        # Method Features
-        method_cnt, method_post_percent = extract_method_features(group)
-        df.loc[df['Host'] == entity, 'method_cnt'] = method_cnt
-        df.loc[df['Host'] == entity, 'method_post'] = method_post_percent
-
-        # Protocol Features
-        use_1_0 = extract_protocol_features(group)
-        df.loc[df['Host'] == entity, 'protocol_1_0'] = use_1_0
-
-        # Status Features
-        status_major_percent, status_404_percent, has_499, status_cnt = extract_status_features(group)
-        df.loc[df['Host'] == entity, 'status_major'] = status_major_percent
-        df.loc[df['Host'] == entity, 'status_404'] = status_404_percent
-        df.loc[df['Host'] == entity, 'status_499'] = has_499
-        df.loc[df['Host'] == entity, 'status_cnt'] = status_cnt
-
-        # Path Features
-        path_same, path_xmlrpc = extract_path_features(group)
-        df.loc[df['Host'] == entity, 'path_same'] = path_same
-        df.loc[df['Host'] == entity, 'path_xmlrpc'] = path_xmlrpc
-
-        # User Agent Features
-        ua_cnt = extract_ua_features(group)
-        df.loc[df['Host'] == entity, 'ua_cnt'] = ua_cnt
-
-        # Payload Features
-        has_payload = extract_payload_features(group)
-        df.loc[df['Host'] == entity, 'has_payload'] = has_payload
-
-        # Bytes Features
-        bytes_avg, bytes_std = extract_bytes_features(group)
-        df.loc[df['Host'] == entity, 'bytes_avg'] = bytes_avg
-        df.loc[df['Host'] == entity, 'bytes_std'] = bytes_std
-
- # Bytes Features
-    bytes_avg, bytes_std = extract_bytes_features(group)
-    df.loc[df['Host'] == entity, 'bytes_avg'] = bytes_avg
-    df.loc[df['Host'] == entity, 'bytes_std'] = bytes_std
-
-    # Drop unwanted columns
-    columns_to_drop = ['Unnamed: 0', 'Timestamp', 'Method', 'Protocol', 'Status', 'Referer', 'Path', 'Host', 'UA', 'Payload', 'Bytes']
-    df = df.drop(columns=columns_to_drop, errors='ignore')
-
-    return df
 
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
