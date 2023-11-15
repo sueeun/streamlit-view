@@ -25,9 +25,6 @@ page = st.sidebar.radio("Go to", ["Home", "About", "Contact"])
 
 # 각 페이지에 대한 내용 표시
 if page == "Home":
-    st.title("Home Page")
-    st.write("Welcome to the Home Page.")
-elif page == "About":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
@@ -50,6 +47,8 @@ elif page == "About":
 
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
+elif page == "About":
+    
 elif page == "Contact":
     st.title("Contact Page")
     st.write("You can contact us here.")
