@@ -5,8 +5,6 @@ import joblib
 from datetime import datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
-import platform
-from matplotlib import font_manager, rc
 from sklearn import preprocessing
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.decomposition import PCA
@@ -17,7 +15,6 @@ from feature_extraction import feature_extract
 from feature_extraction import feature_extract2
 
 
-rc('font', family='NanumGothic')
 
 def main():
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
