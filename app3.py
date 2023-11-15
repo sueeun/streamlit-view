@@ -70,15 +70,20 @@ elif page == "Contact":
         # CSV 파일 읽기
         df_entity = pd.read_csv(uploaded_csvfile)
 
-        # Feature Extraction 수행
+        # Feature Extraction
         df_entity_processed = feature_extract(df_entity)
 
-        # 전처리 결과 출력
+        # host 컬럼을 entity로 변경
+        df_entity_processed = df_entity_processed.rename(columns={'Host': 'entity'})
+
+        # 불필요한 컬럼 제거
+        columns_to_drop = ['Unnamed: 0', 'Timestamp', 'Method', 'Protocol', 'Status', 'Referer', 'Path', 'UA', 'Payload', 'Bytes']
+        df_entity_processed = df_entity_processed.drop(columns=columns_to_drop, errors='ignore')
+
+        # 'entity' 컬럼을 맨 앞으로 이동
+        columns_order = ['entity'] + [col for col in df_entity_processed.columns if col != 'entity']
+        df_entity_processed = df_entity_processed[columns_order]
+
+        # 전처리된 데이터 출력
         st.write("전처리된 데이터:")
         st.write(df_entity_processed)
-
-        # 결과를 CSV로 저장
-        save_button = st.button("결과 저장")
-        if save_button:
-            df_entity_processed.to_csv("preprocessed_data.csv", index=False)
-            st.success("결과가 성공적으로 저장되었습니다.")
