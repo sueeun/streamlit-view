@@ -100,21 +100,22 @@ def main():
    # DBSCAN
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
-
-   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
-   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+   
    result = dbscan_value_counts.index.values
    count = dbscan_value_counts.values
-
-   fig_dbscan_bar = plt.figure(figsize=(10, 6))
-   plt.bar(x, count)
-   plt.xticks(x, result)
-
+   
+   # 그래프 그리기
+   fig_dbscan_bar, ax = plt.subplots(figsize=(10, 6))
+   ax.bar(x, count)
+   ax.set_xticks(x)
+   ax.set_xticklabels(result)
    
    for i, value in enumerate(result):
-      plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-
+       ax.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   # Streamlit 앱에 그래프 표시
    st.pyplot(fig_dbscan_bar)
+
 
 
    # # 아이피 띄우기
