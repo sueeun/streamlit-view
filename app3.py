@@ -87,13 +87,13 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   fig_kmeans_bar, ax = plt.subplots()
-   ax.bar(x, count)
-   ax.set_xticks(x)
-   ax.set_xticklabels(result)
+   fig_kmeans_bar = plt.figure(figsize=(10, 6))
+   plt.bar(x, count)
+   plt.set_xticks(x)
+   plt.set_xticklabels(result)
    
    for i, value in enumerate(result):
-       ax.text(x[i], count[i], count[i], ha='center', va='bottom')
+       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
    # Streamlit 앱에 그래프 표시
    st.pyplot(fig_kmeans_bar)
