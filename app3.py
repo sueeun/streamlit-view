@@ -117,7 +117,7 @@ def main():
    # Streamlit 앱에 그래프 표시
    st.pyplot(fig_dbscan_bar)
 
-
+   st.write(dbscan_value_counts.index.values[1:])
 
    # # 아이피 띄우기
    # st.title('이상탐지된 아이피')
