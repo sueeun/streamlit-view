@@ -103,7 +103,7 @@ def main():
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
-   result = [int(dbscan_value_counts.index.values[dbscan_value_counts.index.values==0]),"[-1,1,2]"]
+   result = [int(dbscan_value_counts.index.values[dbscan_value_counts.index.values==0]),-1]
    count = [int(dbscan_value_counts.values[dbscan_value_counts.index.values==0]),dbscan_value_counts.values[dbscan_value_counts.index.values!=0].sum()]
    
    # 그래프 그리기
