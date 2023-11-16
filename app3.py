@@ -102,13 +102,13 @@ def main():
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
-   result = [int(dbscan_value_counts.index.values[dbscan_value_counts.index.values==0]),dbscan_value_counts.index.values[dbscan_value_counts.index.values!=0]]
+   result = [int(dbscan_value_counts.index.values[dbscan_value_counts.index.values==0]),1]
    count = [int(dbscan_value_counts.values[dbscan_value_counts.index.values==0]),dbscan_value_counts.values[dbscan_value_counts.index.values!=0].sum()]
    
    # 그래프 그리기
    fig_dbscan_bar = plt.figure(figsize=(10, 6))
    plt.bar(x, count)
-   plt.xticks(result)
+   plt.xticks(x, result)
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
