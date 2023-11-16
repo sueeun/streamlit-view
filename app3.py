@@ -45,7 +45,7 @@ def main():
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
 
    # -- PCA --
-   st.title('PCA 그래프')
+   # st.title('PCA 그래프')
 
    # PCA를 사용하여 데이터의 차원을 2로 축소
    # pca = PCA(n_components=2)
@@ -81,11 +81,11 @@ def main():
    st.title('막대그래프')
    
    # Kmeans
-   kmans_value_counts = df_entity['cluster_kmeans'].value_counts()
+   kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
    x = np.arange(2)
    
-   result = kmans_value_counts.index.values
-   count = kmans_value_counts.values
+   result = kmeans_value_counts.index.values
+   count = kmeans_value_counts.values
    
    fig_kmeans_bar, ax = plt.subplots()
    ax.bar(x, count)
@@ -99,19 +99,21 @@ def main():
    st.pyplot(fig_kmeans_bar)
    
    # # DBSCAN
-   # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   # x = np.arange(2)
+   dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
+   x = np.arange(2)
 
-   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
-   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
+   count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+
+   fig_dbscan_bar, ax = plt.subplots()
+   ax.bar(x, count)
+   ax.set_xticks((x, result)
+   ax.set_xticklabels(result)
    
-   # plt.bar(x, count)
-   # plt.xticks(x, result)
+   for i, value in enumerate(result):
+     ax.text(x[i], count[i], count[i], ha='center', va='bottom')
    
-   # for i, value in enumerate(result):
-   #   plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
-   # plt.show()
+
 
    # # 아이피 띄우기
    # st.title('이상탐지된 아이피')
