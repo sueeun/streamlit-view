@@ -45,7 +45,7 @@ def main():
    df_entity['pca_1'] = pca_result[:, 0]
    df_entity['pca_2'] = pca_result[:, 1]
 
-   
+   st.title('PCA 그래프')
    # 2D PCA 결과를 시각화
    fig = plt.figure(figsize=(10, 6))
    plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
@@ -55,6 +55,45 @@ def main():
    plt.colorbar(label='클러스터')
 
    st.pyplot(fig)
+
+
+   # -- 막대 그래프 --
+   st.title('막대그래프')
+   # Kmeans
+   kmans_value_counts = df_entity['cluster_kmeans'].value_counts()
+   x = np.arange(2)
+   
+   result = kmans_value_counts.index.values
+   count = kmans_value_counts.values
+   
+   plt.bar(x, count)
+   plt.xticks(x, result)
+   
+   for i, value in enumerate(result):
+      plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+
+   plt.show()
+
+   # DBSCAN
+   dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
+   x = np.arange(2)
+
+   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
+   count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+   
+   plt.bar(x, count)
+   plt.xticks(x, result)
+   
+   for i, value in enumerate(result):
+     plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   plt.show()
+
+   # 아이피 띄우기
+   st.title('이상탐지된 아이피')
+   df_entity[df_entity['cluster_kmeans']!=1].index
+   df_entity[df_entity['cluster_dbscan']!=0].index
+   
    
 if __name__ == '__main__':
     main()
