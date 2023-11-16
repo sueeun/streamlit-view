@@ -87,14 +87,17 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   fig_kmeans_bar = plt.bar(x, count)
-   plt.xticks(x, result)
+   fig_kmeans_bar, ax = plt.subplots()
+   ax.bar(x, count)
+   ax.set_xticks(x)
+   ax.set_xticklabels(result)
    
    for i, value in enumerate(result):
-      plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-
+       ax.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   # Streamlit 앱에 그래프 표시
    st.pyplot(fig_kmeans_bar)
-
+   
    # # DBSCAN
    # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    # x = np.arange(2)
