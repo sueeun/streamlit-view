@@ -87,7 +87,7 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   fig_kmeans_pca = figplt.bar(x, count)
+   fig_kmeans_pca = plt.bar(x, count)
    plt.xticks(x, result)
    
    for i, value in enumerate(result):
