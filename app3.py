@@ -87,13 +87,13 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   fig_kmeans_pca = plt.bar(x, count)
+   fig_kmeans_bar = plt.bar(x, count)
    plt.xticks(x, result)
    
    for i, value in enumerate(result):
       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
 
-   st.pyplot(fig_dbscan_pca)
+   st.pyplot(fig_kmeans_bar)
 
    # # DBSCAN
    # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
