@@ -70,7 +70,7 @@ def main():
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
-   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist()]
+   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist().sort()]
    count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
 
    fig_dbscan_bar = plt.figure(figsize=(10, 6))
