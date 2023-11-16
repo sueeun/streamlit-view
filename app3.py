@@ -100,10 +100,10 @@ def main():
    # DBSCAN
    # 예제 데이터 생성
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   x = np.arange(len(dbscan_value_counts))  # x의 크기를 조정
+   x = np.arange(2)
 
-   result = dbscan_value_counts.index.values
-   count = dbscan_value_counts.values
+   result = [int(dbscan_value_counts.index.values[dbscan_value_counts.index.values==0]),dbscan_value_counts.index.values[dbscan_value_counts.index.values!=0]]
+   count = [int(dbscan_value_counts.values[dbscan_value_counts.index.values==0]),dbscan_value_counts.values[dbscan_value_counts.index.values!=0].sum()]
    
    # 그래프 그리기
    fig_dbscan_bar = plt.figure(figsize=(10, 6))
