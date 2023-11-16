@@ -92,7 +92,7 @@ def main():
    plt.xticks(x, result)
    
    for i, value in enumerate(result):
-       ax.text(x[i], count[i], count[i], ha='center', va='bottom')
+       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
    # Streamlit 앱에 그래프 표시
    st.pyplot(fig_kmeans_bar)
