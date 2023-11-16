@@ -67,7 +67,6 @@ def main():
    # DBSCAN
    st.title('DBSCAN')
    
-   st.write(df_entity['cluster_dbscan'].value_counts())
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
