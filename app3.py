@@ -13,6 +13,7 @@ from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
 from matplotlib import font_manager, rc
+import streamlit.components.v1 as components
 
 # font_path = "NanumGothic.ttf"
 # font = font_manager.FontProperties(fname=font_path).get_name()
@@ -28,6 +29,7 @@ def main():
 
    cols_to_train = ['method_cnt','method_post','protocol_1_0','status_major','status_404','status_499','status_cnt','path_same','path_xmlrpc','ua_cnt','has_payload','bytes_avg','bytes_std']
 
+   # -- 모델링 --
    # Kmeans
    kmeans = KMeans (n_clusters=2, random_state=42)
    kmeans.fit(df_entity[cols_to_train])
@@ -38,12 +40,17 @@ def main():
    dbscan.fit(df_entity[cols_to_train])
    df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
-   # st.write(df_entity)
 
    # st.title('colab 코드 띄우기')
    # st.write(df_entity['cluster_kmeans'].value_counts())
    # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
 
+
+   components.html(
+      """
+      <div>hello</div>
+      """
+   )
    
    # Kmeans
    st.title('Kmeans')
@@ -81,8 +88,8 @@ def main():
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
    st.pyplot(fig_dbscan_bar)
-
-
+   
+   
    # -- PCA --
    # st.title('PCA 그래프')
 
