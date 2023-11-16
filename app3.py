@@ -106,10 +106,9 @@ def main():
    count = dbscan_value_counts.values
    
    # 그래프 그리기
-   fig_dbscan_bar, ax = plt.subplots(figsize=(10, 6))
-   ax.bar(x, count)
-   ax.set_xticks(x)
-   ax.set_xticklabels(result)
+   fig_dbscan_bar = plt.figure(figsize=(10, 6))
+   plt.bar(x, count)
+   plt.xticks(x, result)
    
    for i, value in enumerate(result):
        ax.text(x[i], count[i], count[i], ha='center', va='bottom')
