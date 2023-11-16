@@ -82,7 +82,7 @@ def main():
 
 
    # -- 막대 그래프 --
-   st.title('막대그래프')
+   # st.title('막대그래프')
    
    # Kmeans
    # kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
