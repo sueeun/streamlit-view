@@ -107,7 +107,7 @@ def main():
 
    fig_dbscan_bar, ax = plt.subplots()
    ax.bar(x, count)
-   ax.set_xticks((x, result)
+   ax.set_xticks(x, result)
    ax.set_xticklabels(result)
    
    for i, value in enumerate(result):
