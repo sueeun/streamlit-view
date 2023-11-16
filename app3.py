@@ -108,7 +108,7 @@ def main():
    # 그래프 그리기
    fig_dbscan_bar = plt.figure(figsize=(10, 6))
    plt.bar(x, count)
-   plt.xticks(x, result)
+   plt.xticks(result)
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
