@@ -38,41 +38,42 @@ def main():
    dbscan.fit(df_entity[cols_to_train])
    df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
-   # st.write(df_entity
+   # st.write(df_entity)
 
    st.title('colab 코드 띄우기')
    st.write(df_entity['cluster_kmeans'].value_counts())
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
 
+   # -- PCA --
    st.title('PCA 그래프')
 
    # PCA를 사용하여 데이터의 차원을 2로 축소
-   pca = PCA(n_components=2)
-   pca_result = pca.fit_transform(df_entity[cols_to_train])
+   # pca = PCA(n_components=2)
+   # pca_result = pca.fit_transform(df_entity[cols_to_train])
    
-   # PCA 결과를 데이터프레임에 추가
-   df_entity['pca_1'] = pca_result[:, 0]
-   df_entity['pca_2'] = pca_result[:, 1]
+   # # PCA 결과를 데이터프레임에 추가
+   # df_entity['pca_1'] = pca_result[:, 0]
+   # df_entity['pca_2'] = pca_result[:, 1]
 
-   # 2D PCA 결과를 시각화
-   fig_kmeans_pca = plt.figure(figsize=(10, 6))
-   plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
-   plt.xlabel("PCA 1")
-   plt.ylabel("PCA 2")
-   plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
-   plt.colorbar(label='클러스터')
+   # # 2D PCA 결과를 시각화
+   # fig_kmeans_pca = plt.figure(figsize=(10, 6))
+   # plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
+   # plt.xlabel("PCA 1")
+   # plt.ylabel("PCA 2")
+   # plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
+   # plt.colorbar(label='클러스터')
    
-   st.pyplot(fig_kmeans_pca)
+   # st.pyplot(fig_kmeans_pca)
 
-   # 2D PCA 결과를 시각화
-   fig_dbscan_pca = plt.figure(figsize=(10, 6))
-   plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
-   plt.xlabel("PCA 1")
-   plt.ylabel("PCA 2")
-   plt.title("DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
-   plt.colorbar(label='클러스터')
+   # # 2D PCA 결과를 시각화
+   # fig_dbscan_pca = plt.figure(figsize=(10, 6))
+   # plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
+   # plt.xlabel("PCA 1")
+   # plt.ylabel("PCA 2")
+   # plt.title("DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
+   # plt.colorbar(label='클러스터')
    
-   st.pyplot(fig_dbscan_pca)
+   # st.pyplot(fig_dbscan_pca)
    
 
 
