@@ -14,9 +14,9 @@ from process_log import process_log_data
 from feature_extraction import feature_extract
 from matplotlib import font_manager, rc
 
-font_path = "NanumGothic.ttf"
-font = font_manager.FontProperties(fname=font_path).get_name()
-rc('font', family=font)
+# font_path = "NanumGothic.ttf"
+# font = font_manager.FontProperties(fname=font_path).get_name()
+# rc('font', family=font)
 
 def main():
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
@@ -40,9 +40,13 @@ def main():
 
    # st.write(df_entity)
 
-   st.title('colab 코드 띄우기')
-   st.write(df_entity['cluster_kmeans'].value_counts())
-   st.write(df_entity[df_entity['cluster_kmeans']==0].index)
+   # st.title('colab 코드 띄우기')
+   # st.write(df_entity['cluster_kmeans'].value_counts())
+   # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
+
+
+   st.title('Kmeans')
+   st.title('DBSCAN')
 
    # -- PCA --
    # st.title('PCA 그래프')
@@ -99,23 +103,22 @@ def main():
    
    # DBSCAN
    # 예제 데이터 생성
-   st.write(df_entity['cluster_dbscan'].value_counts())
-   dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   x = np.arange(2)
+   # st.write(df_entity['cluster_dbscan'].value_counts())
+   # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
+   # x = np.arange(2)
 
-   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist()]
-   count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist()]
+   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
 
-   # 그래프 그리기
-   fig_dbscan_bar = plt.figure(figsize=(10, 6))
-   plt.bar(x, count)
-   plt.xticks(x, result)
+   # # 그래프 그리기
+   # fig_dbscan_bar = plt.figure(figsize=(10, 6))
+   # plt.bar(x, count)
+   # plt.xticks(x, result)
    
-   for i, value in enumerate(result):
-       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+   # for i, value in enumerate(result):
+   #     plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
-   # Streamlit 앱에 그래프 표시
-   st.pyplot(fig_dbscan_bar)
+   # st.pyplot(fig_dbscan_bar)
 
 
    # # 아이피 띄우기
