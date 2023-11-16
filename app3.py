@@ -98,20 +98,20 @@ def main():
    st.pyplot(fig_kmeans_bar)
    
    # DBSCAN
-   dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   x = np.arange(2)
+   # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
+   # x = np.arange(2)
 
-   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
-   count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
+   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
 
-   fig_dbscan_bar = plt.figure(figsize=(10, 6))
-   plt.bar(x, count)
-   plt.xticks(x, result)
+   # fig_dbscan_bar = plt.figure(figsize=(10, 6))
+   # plt.bar(x, count)
+   # plt.xticks(x, result)
    
-   for i, value in enumerate(result):
-     plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+   # for i, value in enumerate(result):
+   #   plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
-   st.pyplot(fig_dbscan_bar)
+   # st.pyplot(fig_dbscan_bar)
 
    # 아이피 띄우기
    # st.title('이상탐지된 아이피')
