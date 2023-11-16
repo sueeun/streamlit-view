@@ -99,6 +99,7 @@ def main():
    
    # DBSCAN
    # 예제 데이터 생성
+   st.write(df_entity['cluster_dbscan'].value_counts())
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
