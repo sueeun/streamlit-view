@@ -16,13 +16,13 @@ from feature_extraction import feature_extract
 # 각 페이지에 대한 내용 표시
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "1.Log Preprocessing", "2.Feature extract", "3.Visualization"])
+page = st.sidebar.radio("Go to", ["Home", "1. Log Preprocessing", "2.Feature extract", "3.Visualization"])
 
 # 각 페이지에 대한 내용 표시
 if page == "Home":
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
-elif page == "1.Log Preprocessing":
+elif page == "1. Log Preprocessing":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
