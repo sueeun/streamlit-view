@@ -12,8 +12,11 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
+from matplotlib import font_manager, rc
 
-
+font_path = "NanumGothic.ttf"
+font = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font)
 
 def main():
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
