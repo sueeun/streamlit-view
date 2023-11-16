@@ -20,8 +20,8 @@ page = st.sidebar.radio("Go to", ["How to use?", "1.ㅤLog Preprocessing", "2.�
 
 # 각 페이지에 대한 내용 표시
 if page == "How to use?":
-    st.title("Home Page")
-    st.write("Welcome to the Home Page.")
+    st.title("Instruction")
+    st.write("Welcome to the Instruction Page.")
 elif page == "1.ㅤLog Preprocessing":
     st.title('로그 데이터 처리 앱')
 
