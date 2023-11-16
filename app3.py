@@ -100,10 +100,8 @@ def main():
    # DBSCAN
    # 예제 데이터 생성
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   x = np.arange(4)  # x의 크기를 조정
+   x = np.arange(len(dbscan_value_counts))  # x의 크기를 조정
    
-   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
-   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
    result = dbscan_value_counts.index.values
    count = dbscan_value_counts.values
    
@@ -115,7 +113,7 @@ def main():
    
    for i, value in enumerate(result):
        ax.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
+      
    # Streamlit 앱에 그래프 표시
    st.pyplot(fig_dbscan_bar)
 
