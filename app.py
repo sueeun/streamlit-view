@@ -16,17 +16,17 @@ from feature_extraction import feature_extract
 # 각 페이지에 대한 내용 표시
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Log Preprocessing", "Feature extract", "Visualization"])
+page = st.sidebar.radio("Go to", ["Home", "1. Log Preprocessing", "2. Feature extract", "3. Visualization"])
 
 # 각 페이지에 대한 내용 표시
 if page == "Home":
     st.title("Home Page")
     st.write("Welcome to the Home Page.")
-elif page == "Log Preprocessing":
+elif page == "1. Log Preprocessing":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_file = st.file_uploader("CSV 파일 선택1", type="csv")
+    uploaded_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
 
     if uploaded_file is not None:
         # CSV 파일 읽기
@@ -45,11 +45,11 @@ elif page == "Log Preprocessing":
 
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
-elif page == "Feature extract":
+elif page == "2. Feature extract":
     st.title('피처 추출 앱')
     
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택2", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택(2)", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
@@ -81,11 +81,11 @@ elif page == "Feature extract":
         b64_no_duplicates = base64.b64encode(csv_file_no_duplicates).decode()
         st.button("Download CSV 파일 (중복 제거)", on_click=lambda: st.markdown(f'<a href="data:file/csv;base64,{b64_no_duplicates}" download="preprocessed_data_no_duplicates.csv">Download CSV 파일 (중복 제거)</a>', unsafe_allow_html=True))
 
-elif page == "Visualization":
+elif page == "3. Visualization":
     st.title('Entity 클러스터링 및 시각화')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택3", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택(3)", type="csv")
 
     if uploaded_csvfile is not None:
         # 업로드된 파일 읽기
