@@ -55,24 +55,24 @@ def main():
    df_entity['pca_2'] = pca_result[:, 1]
 
    # 2D PCA 결과를 시각화
-   fig_kmeans = plt.figure(figsize=(10, 6))
+   fig_kmeans_pca = plt.figure(figsize=(10, 6))
    plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
    plt.xlabel("PCA 1")
    plt.ylabel("PCA 2")
    plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
    plt.colorbar(label='클러스터')
    
-   st.pyplot(fig_kmeans)
+   st.pyplot(fig_kmeans_pca)
 
    # 2D PCA 결과를 시각화
-   fig_dbscan = plt.figure(figsize=(10, 6))
+   fig_dbscan_pca = plt.figure(figsize=(10, 6))
    plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
    plt.xlabel("PCA 1")
    plt.ylabel("PCA 2")
    plt.title("DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
    plt.colorbar(label='클러스터')
    
-   st.pyplot(fig_dbscan)
+   st.pyplot(fig_dbscan_pca)
    
 
 
@@ -86,13 +86,13 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   plt.bar(x, count)
+   fig_kmeans_pca = figplt.bar(x, count)
    plt.xticks(x, result)
    
    for i, value in enumerate(result):
       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
 
-   plt.show()
+   st.pyplot(fig_dbscan_pca)
 
    # # DBSCAN
    # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
