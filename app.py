@@ -46,6 +46,8 @@ elif page == "Log Preprocessing":
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "Feature extract":
+    st.title('피처 추출출 앱')
+    
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
@@ -80,7 +82,7 @@ elif page == "Feature extract":
         st.button("Download CSV 파일 (중복 제거)", on_click=lambda: st.markdown(f'<a href="data:file/csv;base64,{b64_no_duplicates}" download="preprocessed_data_no_duplicates.csv">Download CSV 파일 (중복 제거)</a>', unsafe_allow_html=True))
 
 elif page == "Visualization":
-    st.title('Entity 클러스터링 및 PCA 시각화')
+    st.title('Entity 클러스터링 및 시각화')
 
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
