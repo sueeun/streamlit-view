@@ -45,7 +45,7 @@ elif page == "Log Preprocessing":
 
         # 처리된 파일을 다운로드할 수 있는 링크 제공
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
-elif page == "feature Extract":
+elif page == "Feature extract":
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
 
