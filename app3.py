@@ -44,9 +44,45 @@ def main():
    # st.write(df_entity['cluster_kmeans'].value_counts())
    # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
 
-
+   
+   # Kmeans
    st.title('Kmeans')
+   
+   kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
+   x = np.arange(2)
+   
+   result = kmeans_value_counts.index.values
+   count = kmeans_value_counts.values
+   
+   fig_kmeans_bar = plt.figure(figsize=(10, 6))
+   plt.bar(x, count)
+   plt.xticks(x, result)
+   
+   for i, value in enumerate(result):
+       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   st.pyplot(fig_kmeans_bar)
+
+   
+   # DBSCAN
    st.title('DBSCAN')
+   
+   st.write(df_entity['cluster_dbscan'].value_counts())
+   dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
+   x = np.arange(2)
+
+   result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist()]
+   count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+
+   fig_dbscan_bar = plt.figure(figsize=(10, 6))
+   plt.bar(x, count)
+   plt.xticks(x, result)
+   
+   for i, value in enumerate(result):
+       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   st.pyplot(fig_dbscan_bar)
+
 
    # -- PCA --
    # st.title('PCA 그래프')
@@ -80,45 +116,8 @@ def main():
    # st.pyplot(fig_dbscan_pca)
    
 
-
    # -- 막대 그래프 --
    # st.title('막대그래프')
-   
-   # Kmeans
-   # kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
-   # x = np.arange(2)
-   
-   # result = kmeans_value_counts.index.values
-   # count = kmeans_value_counts.values
-   
-   # fig_kmeans_bar = plt.figure(figsize=(10, 6))
-   # plt.bar(x, count)
-   # plt.xticks(x, result)
-   
-   # for i, value in enumerate(result):
-   #     plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
-   # # Streamlit 앱에 그래프 표시
-   # st.pyplot(fig_kmeans_bar)
-   
-   # DBSCAN
-   # 예제 데이터 생성
-   # st.write(df_entity['cluster_dbscan'].value_counts())
-   # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
-   # x = np.arange(2)
-
-   # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:].tolist()]
-   # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
-
-   # # 그래프 그리기
-   # fig_dbscan_bar = plt.figure(figsize=(10, 6))
-   # plt.bar(x, count)
-   # plt.xticks(x, result)
-   
-   # for i, value in enumerate(result):
-   #     plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
-   # st.pyplot(fig_dbscan_bar)
 
 
    # # 아이피 띄우기
