@@ -96,9 +96,9 @@ elif page == "Contact":
         
 
         # Kmeans
-        kmeans = KMeans (n_clusters=2, random_state=42)
-        kmeans.fit(df_entity[cols_to_train])
-        df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
+        # kmeans = KMeans (n_clusters=2, random_state=42)
+        # kmeans.fit(df_entity[cols_to_train])
+        # df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
 
         # DBSCAN
         dbscan = DBSCAN(eps=0.5,min_samples=2)
@@ -119,14 +119,14 @@ elif page == "Contact":
         
         
         # 2D PCA 결과를 시각화
-        fig_kmeans = plt.figure(figsize=(10, 6))
-        plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
-        plt.xlabel("PCA 1")
-        plt.ylabel("PCA 2")
-        plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
-        plt.colorbar(label='클러스터')
+        # fig_kmeans = plt.figure(figsize=(10, 6))
+        # plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
+        # plt.xlabel("PCA 1")
+        # plt.ylabel("PCA 2")
+        # plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
+        # plt.colorbar(label='클러스터')
         
-        st.pyplot(fig_kmeans)
+        # st.pyplot(fig_kmeans)
 
         # 2D PCA 결과를 시각화
         fig_dbscan = plt.figure(figsize=(10, 6))
