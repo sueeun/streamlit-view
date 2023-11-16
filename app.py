@@ -99,7 +99,6 @@ elif page == "3.ㅤVisualization":
         
         cols_to_train = ['method_cnt','method_post','protocol_1_0','status_major','status_404','status_499','status_cnt','path_same','path_xmlrpc','ua_cnt','has_payload','bytes_avg','bytes_std']
         
-
         # Kmeans
         kmeans = KMeans (n_clusters=2, random_state=42)
         kmeans.fit(df_entity[cols_to_train])
