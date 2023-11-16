@@ -48,7 +48,7 @@ def main():
 
    components.html(
       """
-      <div>hello</div>
+      <h2>hello</h2>
       """
    )
    
