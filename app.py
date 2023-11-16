@@ -110,9 +110,9 @@ elif page == "3.ㅤVisualization":
         dbscan.fit(df_entity[cols_to_train])
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
-        # st.title('colab 코드 띄우기')
-        # st.write(df_entity['cluster_kmeans'].value_counts())
-        # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
+        st.title('colab 코드 띄우기')
+        st.write(df_entity['cluster_kmeans'].value_counts())
+        st.write(df_entity[df_entity['cluster_kmeans']==0].index)
         
         # PCA를 사용하여 데이터의 차원을 2로 축소
         pca = PCA(n_components=2)
