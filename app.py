@@ -16,7 +16,7 @@ from feature_extraction import feature_extract
 # 각 페이지에 대한 내용 표시
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Home", "Log Preprocessing", "feature Extract", "Visualization"])
+page = st.sidebar.radio("Go to", ["Home", "Log Preprocessing", "Feature extract", "Visualization"])
 
 # 각 페이지에 대한 내용 표시
 if page == "Home":
