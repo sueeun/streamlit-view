@@ -78,7 +78,7 @@ def main():
 
 
    # -- 막대 그래프 --
-   # st.title('막대그래프')
+   st.title('막대그래프')
    
    # Kmeans
    kmans_value_counts = df_entity['cluster_kmeans'].value_counts()
@@ -87,33 +87,33 @@ def main():
    result = kmans_value_counts.index.values
    count = kmans_value_counts.values
    
-   fig_kmeans_bar = plt.figure(figsize=(10, 6))
-   plt.bar(x, count)
-   plt.set_xticks(x)
-   plt.set_xticklabels(result)
+   fig_kmeans_bar, ax = plt.subplots()
+   ax.bar(x, count)
+   ax.set_xticks(x)
+   ax.set_xticklabels(result)
    
    for i, value in enumerate(result):
-       plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-
+       ax.text(x[i], count[i], count[i], ha='center', va='bottom')
+   
+   # Streamlit 앱에 그래프 표시
    st.pyplot(fig_kmeans_bar)
    
-   # DBSCAN
+   # # DBSCAN
    # dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    # x = np.arange(2)
 
    # result = [dbscan_value_counts.index.values[0],dbscan_value_counts.index.values[1:]]
    # count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
-
-   # fig_dbscan_bar = plt.figure(figsize=(10, 6))
+   
    # plt.bar(x, count)
    # plt.xticks(x, result)
    
    # for i, value in enumerate(result):
    #   plt.text(x[i], count[i], count[i], ha='center', va='bottom')
    
-   # st.pyplot(fig_dbscan_bar)
+   # plt.show()
 
-   # 아이피 띄우기
+   # # 아이피 띄우기
    # st.title('이상탐지된 아이피')
    # df_entity[df_entity['cluster_kmeans']!=1].index
    # df_entity[df_entity['cluster_dbscan']!=0].index
