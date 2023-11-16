@@ -26,7 +26,7 @@ elif page == "Log Preprocessing":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
-    uploaded_file = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_file = st.file_uploader("CSV 파일 선택1", type="csv")
 
     if uploaded_file is not None:
         # CSV 파일 읽기
@@ -49,7 +49,7 @@ elif page == "Feature extract":
     st.title('피처 추출 앱')
     
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택2", type="csv")
 
     if uploaded_csvfile is not None:
         # CSV 파일 읽기
@@ -85,7 +85,7 @@ elif page == "Visualization":
     st.title('Entity 클러스터링 및 시각화')
 
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택", type="csv")
+    uploaded_csvfile = st.file_uploader("CSV 파일 선택3", type="csv")
 
     if uploaded_csvfile is not None:
         # 업로드된 파일 읽기
