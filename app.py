@@ -16,18 +16,13 @@ from feature_extraction import feature_extract
 # 각 페이지에 대한 내용 표시
 # 사이드바에 링크 추가
 st.sidebar.title("Navigation")
-main_page = st.sidebar.radio("Home", ["ML_dashboard"])
-if page == "ML_dashboard":
-    st.title("ML_dashboard Page")
-    st.write("Welcome to the ML_dashboard Page.")   
 
-page = st.sidebar.radio("Go to", ["How to use?", "1.ㅤLog preprocessing", "2.ㅤFeature extract", "3.ㅤVisualization"])
-# page = st.sidebar.radio("Go to", ["ML_dashboard", "How to use?", "1.ㅤLog preprocessing", "2.ㅤFeature extract", "3.ㅤVisualization"])
+page = st.sidebar.radio("Go to", ["ML_dashboard", "How to use?", "1.ㅤLog preprocessing", "2.ㅤFeature extract", "3.ㅤVisualization"])
 
 # 각 페이지에 대한 내용 표시
-# if page == "ML_dashboard":
-#     st.title("ML_dashboard Page")
-#     st.write("Welcome to the ML_dashboard Page.")    
+if page == "ML_dashboard":
+    st.title("ML_dashboard Page")
+    st.write("Welcome to the ML_dashboard Page.")    
 if page == "How to use?":
     st.title("Instruction")
     st.markdown("***")
