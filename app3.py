@@ -73,7 +73,7 @@ def main():
 
   
    st.pyplot(fig_kmeans_bar)
-    st.markdown(
+   st.markdown(
       """
       0이 이상탐지된 아이피의 개수, 1이 정상 이다.
       """
