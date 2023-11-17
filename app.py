@@ -44,7 +44,8 @@ if page == "How to use?":
     
 elif page == "1.ㅤLog preprocessing":
     st.title('로그 데이터 처리 앱')
-
+    st.markdown("***")
+    
     # 파일 업로드
     uploaded_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
 
@@ -67,6 +68,7 @@ elif page == "1.ㅤLog preprocessing":
         st.markdown(f"처리된 데이터 다운로드: [처리된 파일]({processed_file_path})")
 elif page == "2.ㅤFeature extract":
     st.title('피처 추출 앱')
+    st.markdown("***")
     
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택(2)", type="csv")
@@ -103,7 +105,8 @@ elif page == "2.ㅤFeature extract":
 
 elif page == "3.ㅤVisualization":
     st.title('Entity 클러스터링 및 시각화')
-
+    st.markdown("***")
+    
     # 파일 업로드
     uploaded_csvfile = st.file_uploader("CSV 파일 선택(3)", type="csv")
 
