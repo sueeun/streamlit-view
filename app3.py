@@ -75,6 +75,11 @@ def main():
    )
    st.pyplot(fig_kmeans_bar)
 
+   components.html(
+      """
+      <div></div>
+      """
+   )
    
    # DBSCAN
    st.title('DBSCAN')
