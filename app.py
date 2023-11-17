@@ -22,7 +22,7 @@ page = st.sidebar.radio("Go to", ["How to use?", "1.ㅤLog preprocessing", "2.�
 if page == "How to use?":
     st.title("Instruction")
     st.write("Welcome to the Instruction Page.")
-elif page == "1.ㅤLog Preprocessing":
+elif page == "1.ㅤLog preprocessing":
     st.title('로그 데이터 처리 앱')
 
     # 파일 업로드
