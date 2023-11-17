@@ -99,14 +99,14 @@ def main():
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
       
-   st.markdown("#### Kmeans")
+   st.markdown("#### DBSCAN")
    st.pyplot(fig_dbscan_bar)
    st.markdown(
       """
       0이 정상, 이외는 이상탐지된 아이피이다.
       """
    )
-   st.markdown("  ")
+   st.markdown("<br>", unsafe_allow_html=True)
    st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
    st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
