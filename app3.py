@@ -46,11 +46,11 @@ def main():
    # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
 
 
-   components.html(
-      """
-      <h2>hello</h2>
-      """
-   )
+   # components.html(
+   #    """
+   #    <h2>hello</h2>
+   #    """
+   # )
    
    # Kmeans
    st.title('Kmeans')
@@ -67,7 +67,12 @@ def main():
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
+
+   components.html(
+      """
+      <h2>0이 정상, 1이 이상탐지된 아이피이다.</h2>
+      """
+   )
    st.pyplot(fig_kmeans_bar)
 
    
@@ -86,7 +91,12 @@ def main():
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-   
+
+   components.html(
+      """
+      <h2>0이 정상, 이외는 이상탐지된 아이피이다.</h2>
+      """
+   )
    st.pyplot(fig_dbscan_bar)
    
    
