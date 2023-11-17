@@ -97,11 +97,7 @@ def main():
    st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index, df_entity[df_entity['cluster_dbscan']!=0].index)
    
-   components.html(
-      """
-      <div></div>
-      """
-   )
+   st.markdown("<br><br><br>", unsafe_allow_html=True)
    
    # -- PCA --
    st.title('2. PCA 그래프')
