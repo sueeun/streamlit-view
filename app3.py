@@ -119,7 +119,7 @@ def main():
    plt.xlabel("PCA 1")
    plt.ylabel("PCA 2")
    # plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
-   # plt.colorbar(label='클러스터')
+   plt.colorbar(label='cluster')
    
    st.markdown("#### Kmeans")
    st.pyplot(fig_kmeans_pca)
@@ -130,7 +130,7 @@ def main():
    plt.xlabel("PCA 1")
    plt.ylabel("PCA 2")
    # plt.title("DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
-   # plt.colorbar(label='클러스터')
+   plt.colorbar(label='cluster')
 
    st.markdown("#### DBSCAN")
    st.pyplot(fig_dbscan_pca)
