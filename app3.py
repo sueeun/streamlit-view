@@ -70,7 +70,7 @@ def main():
 
    components.html(
       """
-      <h2>0이 정상, 1이 이상탐지된 아이피이다.</h2>
+      <div>0이 정상, 1이 이상탐지된 아이피이다.</div>
       """
    )
    st.pyplot(fig_kmeans_bar)
@@ -94,7 +94,7 @@ def main():
 
    components.html(
       """
-      <h2>0이 정상, 이외는 이상탐지된 아이피이다.</h2>
+      <div>0이 정상, 이외는 이상탐지된 아이피이다.</div>
       """
    )
    st.pyplot(fig_dbscan_bar)
