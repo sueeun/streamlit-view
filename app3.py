@@ -92,9 +92,9 @@ def main():
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
 
-   components.html(
+   st.markdown(
       """
-      <div>0이 정상, 이외는 이상탐지된 아이피이다.</div>
+      0이 정상, 이외는 이상탐지된 아이피이다
       """
    )
    st.pyplot(fig_dbscan_bar)
