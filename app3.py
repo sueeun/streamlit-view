@@ -62,7 +62,7 @@ def main():
    # )
    
    # Kmeans
-   st.markdown("### 막대그래프")
+   st.markdown("### 1. 막대그래프")
    
    kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
    x = np.arange(2)
@@ -98,9 +98,9 @@ def main():
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-
+      
+   st.markdown("#### Kmeans")
    st.pyplot(fig_dbscan_bar)
-
    st.markdown(
       """
       0이 정상, 이외는 이상탐지된 아이피이다.
