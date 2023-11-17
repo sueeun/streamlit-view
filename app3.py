@@ -74,7 +74,7 @@ def main():
       """
    )
    st.pyplot(fig_kmeans_bar)
-   st.markdown("## 이상탐지된 아이피")
+   st.markdown("### Kmeans에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
    
    
@@ -107,7 +107,7 @@ def main():
    )
    
    st.pyplot(fig_dbscan_bar)
-   st.markdown("## 이상탐지된 아이피")
+   st.markdown("### DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
    
    
