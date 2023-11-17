@@ -21,6 +21,7 @@ page = st.sidebar.radio("Go to", ["How to use?", "1.ㅤLog preprocessing", "2.�
 # 각 페이지에 대한 내용 표시
 if page == "How to use?":
     st.title("Instruction")
+    st.markdown("***")
     st.markdown("##### 1. Log preprocessing")
     st.markdown("->ㅤ로그파일을 업로드하고 전처리가 되면, 전처리된 파일을 다운로드 해주세요.")
     st.markdown("<br>", unsafe_allow_html=True)
