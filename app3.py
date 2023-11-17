@@ -52,8 +52,11 @@ def main():
    #    """
    # )
    
+   
+   st.title('Kmeans와 DBSCAN 시각화')
+
    # Kmeans
-   st.title('Kmeans')
+   st.markdown("""막대그래프""")
    
    kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
    x = np.arange(2)
@@ -68,24 +71,18 @@ def main():
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
 
-   st.markdown(
+  
+   st.pyplot(fig_kmeans_bar)
+    st.markdown(
       """
-      0이 이상탐지된 아이피, 0이 정상 아이피이다.
+      0이 이상탐지된 아이피의 개수, 1이 정상 이다.
       """
    )
-   st.pyplot(fig_kmeans_bar)
+
    st.markdown("### Kmeans에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
    
-   
-   components.html(
-      """
-      <div></div>
-      """
-   )
-   
    # DBSCAN
-   st.title('DBSCAN')
    
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
@@ -100,16 +97,16 @@ def main():
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
 
+   st.pyplot(fig_dbscan_bar)
+
    st.markdown(
       """
-      0이 정상, 이외는 이상탐지된 아이피이다
+      0이 정상, 이외는 이상탐지된 아이피이다.
       """
    )
-   
-   st.pyplot(fig_dbscan_bar)
+
    st.markdown("### DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
-   
    
    # -- PCA --
    # st.title('PCA 그래프')
@@ -142,15 +139,6 @@ def main():
    
    # st.pyplot(fig_dbscan_pca)
    
-
-   # -- 막대 그래프 --
-   # st.title('막대그래프')
-
-
-   # # 아이피 띄우기
-   # st.title('이상탐지된 아이피')
-   # df_entity[df_entity['cluster_kmeans']!=1].index
-   # df_entity[df_entity['cluster_dbscan']!=0].index
    
    
 if __name__ == '__main__':
