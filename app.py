@@ -29,7 +29,7 @@ if page == "How to use?":
     st.markdown("->ㅤ전처리된 로그파일을 업로드하고 피처 추출이 되면, 피처 추출된 파일을 다운로드 해주세요.")
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("##### 3. Visualization")
-    st.markdown("->ㅤ피처 추출된 파일을 업로드하면, K-means,DBSCAN를 바탕으로 한 시각화를 할 수 있습니다.")
+    st.markdown("->ㅤ피처 추출된 파일을 업로드하면, K-means, DBSCAN를 바탕으로 한 시각화를 할 수 있습니다.")
     
     # st.write("")
     # st.write("")
