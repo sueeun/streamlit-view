@@ -40,30 +40,16 @@ def main():
    dbscan.fit(df_entity[cols_to_train])
    df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
-
-   # st.title('colab 코드 띄우기')
-   # st.write(df_entity['cluster_kmeans'].value_counts())
-   # st.write(df_entity[df_entity['cluster_kmeans']==0].index)
-
-
-   # components.html(
-   #    """
-   #    <h2>hello</h2>
-   #    """
-   # )
    
    
    st.title('Kmeans와 DBSCAN 시각화')
    st.markdown("***")
-   # components.html(
-   #    """
-   #    <h2>hello</h2>
-   #    """
-   # )
    
-   # Kmeans
+
+   # -- 막대그래프 --
    st.markdown("### 1. 막대그래프")
    
+   # Kmeans
    kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
    x = np.arange(2)
    
@@ -81,12 +67,11 @@ def main():
    st.pyplot(fig_kmeans_bar)
    st.markdown(
       """
-      0이 이상탐지된 아이피의 개수, 1이 정상 이다.
+      0이 이상탐지된 아이피의 개수, 1이 정상아이피이다.
       """
    )
 
    # DBSCAN
-   
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
@@ -104,9 +89,10 @@ def main():
    st.pyplot(fig_dbscan_bar)
    st.markdown(
       """
-      0이 정상, 이외는 이상탐지된 아이피이다.
+      0이 정상아이피, 이외는 이상탐지된 아이피이다.
       """
    )
+   
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
@@ -115,35 +101,39 @@ def main():
 
    
    # -- PCA --
-   # st.title('PCA 그래프')
+   st.title('2. PCA 그래프')
 
    # PCA를 사용하여 데이터의 차원을 2로 축소
-   # pca = PCA(n_components=2)
-   # pca_result = pca.fit_transform(df_entity[cols_to_train])
+   pca = PCA(n_components=2)
+   pca_result = pca.fit_transform(df_entity[cols_to_train])
    
-   # # PCA 결과를 데이터프레임에 추가
-   # df_entity['pca_1'] = pca_result[:, 0]
-   # df_entity['pca_2'] = pca_result[:, 1]
+   # PCA 결과를 데이터프레임에 추가
+   df_entity['pca_1'] = pca_result[:, 0]
+   df_entity['pca_2'] = pca_result[:, 1]
+
 
    # # 2D PCA 결과를 시각화
-   # fig_kmeans_pca = plt.figure(figsize=(10, 6))
-   # plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
-   # plt.xlabel("PCA 1")
-   # plt.ylabel("PCA 2")
+   # Kmeans
+   fig_kmeans_pca = plt.figure(figsize=(10, 6))
+   plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
+   plt.xlabel("PCA 1")
+   plt.ylabel("PCA 2")
    # plt.title("KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
    # plt.colorbar(label='클러스터')
    
-   # st.pyplot(fig_kmeans_pca)
+   st.markdown("#### Kmeans")
+   st.pyplot(fig_kmeans_pca)
 
-   # # 2D PCA 결과를 시각화
-   # fig_dbscan_pca = plt.figure(figsize=(10, 6))
-   # plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
-   # plt.xlabel("PCA 1")
-   # plt.ylabel("PCA 2")
+   # DBSCAN
+   fig_dbscan_pca = plt.figure(figsize=(10, 6))
+   plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
+   plt.xlabel("PCA 1")
+   plt.ylabel("PCA 2")
    # plt.title("DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
    # plt.colorbar(label='클러스터')
-   
-   # st.pyplot(fig_dbscan_pca)
+
+   st.markdown("#### DBSCAN")
+   st.pyplot(fig_dbscan_pca)
    
    
    
