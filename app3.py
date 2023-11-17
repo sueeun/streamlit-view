@@ -76,7 +76,8 @@ def main():
    
    for i, value in enumerate(result):
        plt.text(x[i], count[i], count[i], ha='center', va='bottom')
-      
+
+   st.markdown("#### Kmeans")
    st.pyplot(fig_kmeans_bar)
    st.markdown(
       """
@@ -84,12 +85,7 @@ def main():
       """
    )
 
-   st.markdown("### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
-   st.write(df_entity[df_entity['cluster_kmeans']==0].index)
-   st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
-   
    # DBSCAN
-   
    dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
    x = np.arange(2)
 
@@ -110,6 +106,14 @@ def main():
       0이 정상, 이외는 이상탐지된 아이피이다.
       """
    )
+
+   st.markdown("### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
+   st.write(df_entity[df_entity['cluster_kmeans']==0].index)
+   st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
+   
+   # DBSCAN
+   
+   
 
   
    
