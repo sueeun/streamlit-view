@@ -95,8 +95,7 @@ def main():
    
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
-   st.write(df_entity[df_entity['cluster_kmeans']==0].index)
-   st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
+   st.write(df_entity[df_entity['cluster_kmeans']==0].index, df_entity[df_entity['cluster_dbscan']!=0].index)
    
 
    
