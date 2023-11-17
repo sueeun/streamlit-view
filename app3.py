@@ -70,11 +70,14 @@ def main():
 
    st.markdown(
       """
-      0이 정상, 1이 이상탐지된 아이피이다.
+      0이 이상탐지된 아이피, 0이 정상 아이피이다.
       """
    )
    st.pyplot(fig_kmeans_bar)
-
+   st.markdown("## 이상탐지된 아이피")
+   st.write(df_entity[df_entity['cluster_kmeans']==0].index)
+   
+   
    components.html(
       """
       <div></div>
@@ -102,7 +105,10 @@ def main():
       0이 정상, 이외는 이상탐지된 아이피이다
       """
    )
+   
    st.pyplot(fig_dbscan_bar)
+   st.markdown("## 이상탐지된 아이피")
+   st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
    
    
    # -- PCA --
