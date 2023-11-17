@@ -106,8 +106,8 @@ def main():
       0이 정상, 이외는 이상탐지된 아이피이다.
       """
    )
-
-   st.markdown("### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
+   st.markdown("  ")
+   st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
    st.write(df_entity[df_entity['cluster_kmeans']==0].index)
    st.write(df_entity[df_entity['cluster_dbscan']!=0].index)
    
