@@ -119,8 +119,8 @@ def main():
           st.write(f"{search_entity}은(는) 클러스터에 속해 있지 않습니다.")
 
    st.markdown("#### 아이피의 로그 검색")
-   searched_ip = st.text_input("검색할 ip 입력:")
-   st.write(log_df['message'].str.contains(searched_ip), key="input2")
+   searched_ip = st.text_input("검색할 ip 입력:", key="input2")
+   st.write(log_df['message'].str.contains(searched_ip))
    
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
