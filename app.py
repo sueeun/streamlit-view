@@ -70,7 +70,7 @@ elif page == "2.ㅤFeature extract":
     # 파일 업로드
     processed_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
     
-    if log_file is not None:
+    if processed_file is not None:
         st.write(processed_file)
 
     if processed_file is not None:
