@@ -71,7 +71,7 @@ elif page == "2.ㅤFeature extract":
     processed_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
     
     if processed_file is not None:
-        st.write(processed_file)
+        st.write(pd.read_csv(log_file))
 
     elif processed_file is not None:
         # CSV 파일 읽기
