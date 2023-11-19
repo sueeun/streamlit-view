@@ -68,12 +68,13 @@ elif page == "2.ㅤFeature extract":
     st.markdown("***")
     
     # 파일 업로드
-    processed_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
+    log_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
+    processed_file = st.file_uploader("CSV 파일 선택(2)", type="csv")
     
-    if processed_file is not None:
-        st.write(pd.read_csv(processed_file))
+    if log_file is not None:
+        st.write(pd.read_csv(log_file))
 
-    elif processed_file is not None:
+    if processed_file is not None:
         # CSV 파일 읽기
         df_entity = pd.read_csv(processed_file)
 
