@@ -92,10 +92,24 @@ def main():
       0이 정상아이피, 이외는 이상탐지된 아이피이다.
       """
    )
+
+   anomalyDetection_kmeans = df_entity[df_entity['cluster_kmeans'] == 0].index
+   anomalyDetection_dbscan = df_entity[df_entity['cluster_dbscan'] != 0].index
    
+   # 아이피, 로그 조회
    st.markdown("<br>", unsafe_allow_html=True)
    st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피 조회")
-   st.write(df_entity[df_entity['cluster_kmeans']==0].index, df_entity[df_entity['cluster_dbscan']!=0].index)
+   st.write(anomalyDetection_kmeans, anomalyDetection_dbscan)
+   
+   st.markdown("<br>", unsafe_allow_html=True)
+ 
+   st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피의 로그 조회하기")
+
+   # 아이피의 로그 검색
+   log_csvfile = pd.read_csv('test.csv')
+   searched_ip = st.text_input("검색할 ip입력:")
+   st.write()
+   
    
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
@@ -134,7 +148,20 @@ def main():
    st.markdown("#### DBSCAN")
    st.pyplot(fig_dbscan_pca)
    
+   search_entity = st.text_input("검색할 Entity 입력:")
    
+   if search_entity:
+      st.write("검색 결과:")
+      if search_entity in anomalyDetection_kmeans and search_entity in anomalyDetection_dbscan:
+          st.write(f"{search_entity}은(는) KMeans 클러스터 0과 DBSCAN 클러스터 0을 제외한 클러스터에 모두 속해 있습니다.")
+      elif search_entity in anomalyDetection_kmeans:
+          st.write(f"{search_entity}은(는) KMeans 클러스터 0에 속해 있습니다.")
+      elif search_entity in anomalyDetection_dbscan:
+          st.write(f"{search_entity}은(는) DBSCAN 클러스터 0을 제외한 클러스터에 속해 있습니다.")
+      else:
+          st.write(f"{search_entity}은(는) 클러스터에 속해 있지 않습니다.")
+
+ 
    
 if __name__ == '__main__':
     main()
