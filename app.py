@@ -44,11 +44,11 @@ elif page == "1.ㅤLog preprocessing":
     st.markdown("***")
     
     # 파일 업로드
-    uploaded_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
+    log_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
 
-    if uploaded_file is not None:
+    if log_file is not None:
         # CSV 파일 읽기
-        log_df = pd.read_csv(uploaded_file)
+        log_df = pd.read_csv(log_file)
 
         # 로그 데이터 처리
         processed_log_df = process_log_data(log_df)
@@ -68,11 +68,11 @@ elif page == "2.ㅤFeature extract":
     st.markdown("***")
     
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택(2)", type="csv")
+    processed_file = st.file_uploader("CSV 파일 선택(2)", type="csv")
 
-    if uploaded_csvfile is not None:
+    if processed_file is not None:
         # CSV 파일 읽기
-        df_entity = pd.read_csv(uploaded_csvfile)
+        df_entity = pd.read_csv(processed_file)
 
         # Feature Extraction
         df_entity_processed = feature_extract(df_entity)
@@ -105,11 +105,11 @@ elif page == "3.ㅤVisualization":
     st.markdown("***")
     
     # 파일 업로드
-    uploaded_csvfile = st.file_uploader("CSV 파일 선택(3)", type="csv")
+    feature_file = st.file_uploader("CSV 파일 선택(3)", type="csv")
 
-    if uploaded_csvfile is not None:
+    if feature_file is not None:
         # 업로드된 파일 읽기
-        df_entity = pd.read_csv(uploaded_csvfile, index_col='entity')
+        df_entity = pd.read_csv(feature_file, index_col='entity')
 
         # Feature Scaling
         columns_to_scale = ['method_cnt', 'status_cnt', 'ua_cnt', 'bytes_avg', 'bytes_std']
