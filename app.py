@@ -73,7 +73,7 @@ elif page == "2.ㅤFeature extract":
     if processed_file is not None:
         st.write(processed_file)
 
-    if processed_file is not None:
+    elif processed_file is not None:
         # CSV 파일 읽기
         df_entity = pd.read_csv(processed_file)
 
