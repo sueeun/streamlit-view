@@ -120,8 +120,11 @@ def main():
 
    st.markdown("#### 아이피의 로그 검색")
    searched_ip = st.text_input("검색할 ip 입력:", key="input2")
-   st.write(log_df['message'].str.contains(searched_ip))
-   
+
+   if searched_ip:
+      st.write("검색 결과:")
+      st.write(log_df[log_df['message'].str.contains(searched_ip)]) 
+      
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
    # -- PCA --
