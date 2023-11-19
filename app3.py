@@ -105,7 +105,7 @@ def main():
    st.markdown("<br>", unsafe_allow_html=True)
  
    st.markdown("#### kmeans, dbscan에 이상탐지된 아이피 검색")
-   search_entity = st.text_input("검색할 ip 입력:")
+   search_entity = st.text_input("검색할 ip 입력:", key="input1")
    
    if search_entity:
       st.write("검색 결과:")
@@ -120,7 +120,7 @@ def main():
 
    st.markdown("#### 아이피의 로그 검색")
    searched_ip = st.text_input("검색할 ip 입력:")
-   st.write(log_df['message'].str.contains(searched_ip))
+   st.write(log_df['message'].str.contains(searched_ip), key="input2")
    
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
