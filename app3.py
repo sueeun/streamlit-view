@@ -123,7 +123,7 @@ def main():
 
    if searched_ip:
       st.write("검색 결과:")
-      st.write(log_df[log_df['message'].str.contains(searched_ip)]) 
+      st.write(log_df[log_df['message'].str.contains(searched_ip)].drop('timestamp', axis=1)) 
       
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
