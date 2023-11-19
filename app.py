@@ -68,7 +68,7 @@ elif page == "2.ㅤFeature extract":
     st.markdown("***")
     
     # 파일 업로드
-    processed_file = st.file_uploader("CSV 파일 선택(2)", type="csv")
+    processed_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
     
     if log_file is not None:
         st.write(log_file)
