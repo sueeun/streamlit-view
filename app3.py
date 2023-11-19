@@ -20,8 +20,9 @@ import streamlit.components.v1 as components
 # rc('font', family=font)
 
 def main():
+   log_df = pd.read_csv('ctlog1.csv')
    df_entity = pd.read_csv('pj_processed.csv', index_col='entity')
-   # st.write(df_entity)
+
    columns_to_scale = ['method_cnt', 'status_cnt', 'ua_cnt', 'bytes_avg', 'bytes_std']
    scaler = preprocessing.MinMaxScaler()
    scaler = scaler.fit(df_entity[columns_to_scale])
@@ -103,13 +104,23 @@ def main():
    
    st.markdown("<br>", unsafe_allow_html=True)
  
-   st.markdown("##### Kmeans와 DBSCAN에서 이상탐지된 아이피의 로그 조회하기")
-
-   # 아이피의 로그 검색
-   log_csvfile = pd.read_csv('test.csv')
-   searched_ip = st.text_input("검색할 ip입력:")
-   st.write()
+   st.markdown("#### kmeans, dbscan에 이상탐지된 아이피 검색")
+   search_entity = st.text_input("검색할 ip 입력:")
    
+   if search_entity:
+      st.write("검색 결과:")
+      if search_entity in anomalyDetection_kmeans and search_entity in anomalyDetection_dbscan:
+          st.write(f"{search_entity}은(는) KMeans 클러스터 0과 DBSCAN 클러스터 0을 제외한 클러스터에 모두 속해 있습니다.")
+      elif search_entity in anomalyDetection_kmeans:
+          st.write(f"{search_entity}은(는) KMeans 클러스터 0에 속해 있습니다.")
+      elif search_entity in anomalyDetection_dbscan:
+          st.write(f"{search_entity}은(는) DBSCAN 클러스터 0을 제외한 클러스터에 속해 있습니다.")
+      else:
+          st.write(f"{search_entity}은(는) 클러스터에 속해 있지 않습니다.")
+
+   st.markdown("#### 아이피의 로그 검색")
+   searched_ip = st.text_input("검색할 ip 입력:")
+   st.write(log_df['message'].str.contains(searched_ip))
    
    st.markdown("<br><br><br>", unsafe_allow_html=True)
    
@@ -147,19 +158,10 @@ def main():
 
    st.markdown("#### DBSCAN")
    st.pyplot(fig_dbscan_pca)
-   
-   search_entity = st.text_input("검색할 Entity 입력:")
-   
-   if search_entity:
-      st.write("검색 결과:")
-      if search_entity in anomalyDetection_kmeans and search_entity in anomalyDetection_dbscan:
-          st.write(f"{search_entity}은(는) KMeans 클러스터 0과 DBSCAN 클러스터 0을 제외한 클러스터에 모두 속해 있습니다.")
-      elif search_entity in anomalyDetection_kmeans:
-          st.write(f"{search_entity}은(는) KMeans 클러스터 0에 속해 있습니다.")
-      elif search_entity in anomalyDetection_dbscan:
-          st.write(f"{search_entity}은(는) DBSCAN 클러스터 0을 제외한 클러스터에 속해 있습니다.")
-      else:
-          st.write(f"{search_entity}은(는) 클러스터에 속해 있지 않습니다.")
+
+  
+
+      
 
  
    
