@@ -68,11 +68,7 @@ elif page == "2.ㅤFeature extract":
     st.markdown("***")
     
     # 파일 업로드
-    log_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
     processed_file = st.file_uploader("CSV 파일 선택(2)", type="csv")
-    
-    if log_file is not None:
-        st.write(pd.read_csv(log_file))
 
     if processed_file is not None:
         # CSV 파일 읽기
@@ -109,8 +105,12 @@ elif page == "3.ㅤVisualization":
     st.markdown("***")
     
     # 파일 업로드
+    log_file = st.file_uploader("CSV 파일 선택(1)", type="csv")
     feature_file = st.file_uploader("CSV 파일 선택(3)", type="csv")
 
+    if log_file is not None:
+        log_df = pd.read_csv(log_file)
+    
     if feature_file is not None:
         # 업로드된 파일 읽기
         df_entity = pd.read_csv(feature_file, index_col='entity')
