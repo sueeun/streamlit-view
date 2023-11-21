@@ -132,7 +132,8 @@ elif page == "3.ㅤVisualization":
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
         # -- 막대그래프 --
-        st.markdown("### 1. 막대그래프")
+        st.title("1. 막대그래프")
+        st.markdown("<br>", unsafe_allow_html=True)
         
         # Kmeans
         kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
@@ -214,6 +215,7 @@ elif page == "3.ㅤVisualization":
 
         # -- PCA --
         st.title('2. PCA 그래프')
+        st.markdown("<br>", unsafe_allow_html=True)
         
         # PCA를 사용하여 데이터의 차원을 2로 축소
         pca = PCA(n_components=2)
@@ -231,7 +233,7 @@ elif page == "3.ㅤVisualization":
         plt.ylabel("PCA 2")
         plt.colorbar(label='클러스터')
 
-        st.markdown("#### KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
+        st.markdown("##### KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
         st.pyplot(fig_kmeans)
 
         # 2D PCA 결과를 시각화
@@ -241,7 +243,7 @@ elif page == "3.ㅤVisualization":
         plt.ylabel("PCA 2")
         plt.colorbar(label='클러스터')
 
-        st.markdown("#### DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
+        st.markdown("##### DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
         st.pyplot(fig_dbscan)
 
 
