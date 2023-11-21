@@ -233,7 +233,7 @@ elif page == "3.ㅤVisualization":
         plt.ylabel("PCA 2")
         plt.colorbar(label='cluster')
 
-        st.markdown("##### Kmeans")
+        st.markdown("#### Kmeans")
         st.pyplot(fig_kmeans)
 
         # 2D PCA 결과를 시각화
@@ -243,7 +243,7 @@ elif page == "3.ㅤVisualization":
         plt.ylabel("PCA 2")
         plt.colorbar(label='cluster')
 
-        st.markdown("##### DBSCAN")
+        st.markdown("#### DBSCAN")
         st.pyplot(fig_dbscan)
 
 
