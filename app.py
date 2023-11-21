@@ -132,7 +132,7 @@ elif page == "3.ㅤVisualization":
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
         # -- 막대그래프 --
-        st.title("1. 막대그래프")
+        st.markdown("### 1. 막대그래프")
         st.markdown("<br>", unsafe_allow_html=True)
         
         # Kmeans
@@ -214,7 +214,7 @@ elif page == "3.ㅤVisualization":
         
 
         # -- PCA --
-        st.title('2. PCA 그래프')
+        st.markdown('### 2. PCA 그래프')
         st.markdown("<br>", unsafe_allow_html=True)
         
         # PCA를 사용하여 데이터의 차원을 2로 축소
