@@ -133,7 +133,6 @@ elif page == "3.ㅤVisualization":
 
         # -- 막대그래프 --
         st.markdown("### 1. 막대그래프")
-        st.markdown("<br>", unsafe_allow_html=True)
         
         # Kmeans
         kmeans_value_counts = df_entity['cluster_kmeans'].value_counts()
@@ -215,7 +214,6 @@ elif page == "3.ㅤVisualization":
 
         # -- PCA --
         st.markdown('### 2. PCA 그래프')
-        st.markdown("<br>", unsafe_allow_html=True)
         
         # PCA를 사용하여 데이터의 차원을 2로 축소
         pca = PCA(n_components=2)
