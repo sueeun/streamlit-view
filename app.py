@@ -231,9 +231,9 @@ elif page == "3.ㅤVisualization":
         plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_kmeans'], cmap='viridis', s=60)
         plt.xlabel("PCA 1")
         plt.ylabel("PCA 2")
-        plt.colorbar(label='클러스터')
+        plt.colorbar(label='cluster')
 
-        st.markdown("##### KMeans 클러스터링된 Entity 시각화 (PCA 결과)")
+        st.markdown("##### Kmeans")
         st.pyplot(fig_kmeans)
 
         # 2D PCA 결과를 시각화
@@ -241,9 +241,9 @@ elif page == "3.ㅤVisualization":
         plt.scatter(df_entity['pca_1'], df_entity['pca_2'], c=df_entity['cluster_dbscan'], cmap='viridis', s=60)
         plt.xlabel("PCA 1")
         plt.ylabel("PCA 2")
-        plt.colorbar(label='클러스터')
+        plt.colorbar(label='cluster')
 
-        st.markdown("##### DBSCAN 클러스터링된 Entity 시각화 (PCA 결과)")
+        st.markdown("##### DBSCAN")
         st.pyplot(fig_dbscan)
 
 
