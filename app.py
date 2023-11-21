@@ -12,18 +12,13 @@ from sklearn.manifold import TSNE
 from process_log import process_log_data 
 from feature_extraction import feature_extract
 
-
-# 각 페이지에 대한 내용 표시
-# 사이드바에 링크 추가
+# 사이드바
 st.sidebar.title("ML Dashboard")
 
+# 사이드바에 링크 추가
 page = st.sidebar.radio("Go to", ["How to use?", "1.ㅤLog preprocessing", "2.ㅤFeature extract", "3.ㅤVisualization"])
-# page = st.sidebar.radio("Go to", ["ML_dashboard", "How to use?", "1.ㅤLog preprocessing", "2.ㅤFeature extract", "3.ㅤVisualization"])
 
 # 각 페이지에 대한 내용 표시
-# if page == "Home":
-#     st.title("Home Page")
-#     st.write("Welcome to the Home Page.")
 if page == "How to use?":
     st.title("Instruction")
     st.markdown("***")
@@ -96,7 +91,6 @@ elif page == "2.ㅤFeature extract":
         csv_file_no_duplicates = df_entity_processed_no_duplicates.to_csv(index=False).encode()
         b64_no_duplicates = base64.b64encode(csv_file_no_duplicates).decode()
         st.button("Download CSV 파일 (중복 제거)", on_click=lambda: st.markdown(f'<a href="data:file/csv;base64,{b64_no_duplicates}" download="preprocessed_data_no_duplicates.csv">Download CSV 파일 (중복 제거)</a>', unsafe_allow_html=True))
-
 elif page == "3.ㅤVisualization":
     st.title('Entity 클러스터링 및 시각화')
     st.markdown("***")
