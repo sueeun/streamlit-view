@@ -146,9 +146,14 @@ elif page == "3.ㅤVisualization":
         # DBSCAN
         dbscan_value_counts = df_entity['cluster_dbscan'].value_counts()
         x = np.arange(2)
+
+        dbscan_index = dbscan_value_counts.index.values
+        indices = np.where(dbscan_index == 0)
         
-        result = [dbscan_value_counts.index.values[0],sorted(dbscan_value_counts.index.values[1:].tolist())]
-        count = [dbscan_value_counts.values[0],dbscan_value_counts.values[1:].sum()]
+        zero_index = int(list(indices)[0])
+        
+        result = [dbscan_value_counts.values[zero_index], sorted(dbscan_value_counts.index.values[zero_index:].tolist()+dbscan_value_counts.index.values[:zero_index].tolist())
+        count = [dbscan_value_counts.values[zero_index], dbscan_value_counts.values.sum()-dbscan_value_counts.values[zero_index]]
         
         fig_dbscan_bar = plt.figure(figsize=(10, 6))
         plt.bar(x, count)
