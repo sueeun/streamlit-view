@@ -142,7 +142,7 @@ elif page == "3.ㅤVisualization":
         st.pyplot(fig_kmeans_bar)
         st.markdown(
           """
-          0이 이상탐지된 아이피의 개수, 1이 정상아이피이다.
+          0이 이상탐지된 아이피, 1이 정상아이피이다.
           """
         )
         
