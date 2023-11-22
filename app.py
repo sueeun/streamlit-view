@@ -152,7 +152,7 @@ elif page == "3.ㅤVisualization":
         
         zero_index = int(list(indices)[0])
         
-        result = [dbscan_value_counts.values[zero_index], sorted(dbscan_value_counts.index.values[zero_index+1:].tolist()+dbscan_value_counts.index.values[:zero_index].tolist())]
+        result = [dbscan_value_counts.index.values[zero_index], sorted(dbscan_value_counts.index.values[zero_index+1:].tolist()+dbscan_value_counts.index.values[:zero_index].tolist())]
         count = [dbscan_value_counts.values[zero_index], dbscan_value_counts.values.sum()-dbscan_value_counts.values[zero_index]]
         
         fig_dbscan_bar = plt.figure(figsize=(10, 6))
