@@ -181,13 +181,13 @@ elif page == "3.ㅤVisualization":
         if search_entity:
           st.write("검색 결과:")
           if search_entity in anomalyDetection_kmeans and search_entity in anomalyDetection_dbscan:
-              st.write(f"{search_entity}은(는) KMeans 클러스터 0과 DBSCAN 클러스터 0을 제외한 클러스터에 모두 속해 있습니다.")
+              st.write(f"{search_entity}은(는) KMeans, DBSCAN 두 모델로부터 이상탐지 되었습니다.")
           elif search_entity in anomalyDetection_kmeans:
-              st.write(f"{search_entity}은(는) KMeans 클러스터 0에 속해 있습니다.")
+              st.write(f"{search_entity}은(는) KMeans 모델로부터 이상탐지 되었습니다.")
           elif search_entity in anomalyDetection_dbscan:
-              st.write(f"{search_entity}은(는) DBSCAN 클러스터 0을 제외한 클러스터에 속해 있습니다.")
+              st.write(f"{search_entity}은(는) DBSCAN 모델로부터 이상탐지 되었습니다.")
           else:
-              st.write(f"{search_entity}은(는) 클러스터에 속해 있지 않습니다.")
+              st.write(f"{search_entity}은(는) KMeans, DBSCAN 두 모델로부터 이상탐지 되지 않았습니다.")
         
         st.markdown("#### 아이피의 로그 검색")
         searched_ip = st.text_input("검색할 ip 입력:", key="input2")
