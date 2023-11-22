@@ -118,6 +118,9 @@ elif page == "3.ㅤVisualization":
         dbscan.fit(df_entity[cols_to_train])
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
+        # 데이터프레임 출력
+        st.write(df_entity)
+        
         # -- 막대그래프 --
         st.markdown("### 1. 막대그래프")
         
