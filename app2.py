@@ -8,6 +8,7 @@ from sklearn import preprocessing
 from sklearn.cluster import KMeans, DBSCAN
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
+from joblib import load
 
 from process_log import process_log_data 
 from feature_extraction import feature_extract
@@ -109,13 +110,11 @@ elif page == "3.ㅤVisualization":
         
         # -- 모델링 --
         # Kmeans
-        kmeans = KMeans (n_clusters=2, random_state=42)
-        kmeans.fit(df_entity[cols_to_train])
+        kmeans = load('kmeans.pkl')
         df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
 
         # DBSCAN
-        dbscan = DBSCAN(eps=0.5,min_samples=2)
-        dbscan.fit(df_entity[cols_to_train])
+        dbscan = load('dbscan.pkl')
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
         # 데이터프레임 출력
