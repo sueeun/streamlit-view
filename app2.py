@@ -114,7 +114,7 @@ elif page == "3.ㅤVisualization":
         df_entity['cluster_kmeans'] = kmeans.predict(df_entity[cols_to_train])
 
         # DBSCAN
-        dbscan = DBSCAN(eps=0.5,min_samples=2)
+        dbscan = DBSCAN(eps=0.7,min_samples=2)
         dbscan.fit(df_entity[cols_to_train])
         df_entity['cluster_dbscan'] = dbscan.fit_predict(df_entity[cols_to_train])
 
